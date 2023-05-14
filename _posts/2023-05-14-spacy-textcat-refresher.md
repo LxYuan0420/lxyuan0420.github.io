@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to train spaCy multiclass multilabel text classifier"
+title: "How to train spaCy text classifier for multiclass or multilabel problem"
 description: "This article describes the steps of training spaCy text classifiers."
 ---
 
@@ -18,7 +18,7 @@ In this article, the term "multiclass" refers to a given example belonging to
 only one positive class out of K number of classes, whereas "multilabel" means
 a given example can belong to zero or more labels at the same time. For
 instance, we use multiclass to classify animal types like [dog, cat, fish]
-(obviously you can be dog and cat at the same time), while a multilabel task
+(obviously you can't be dog and cat at the same time), while a multilabel task
 can be used for movie categorisation, tagging a movie as [romance, funny]
 simultaneously.
 

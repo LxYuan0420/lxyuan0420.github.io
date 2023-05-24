@@ -75,7 +75,7 @@ def reward_function(params):
 {% endhighlight %}
 
 You can see how the car performs during the evaluation phase:
-<iframe src="https://www.youtube.com/watch?v=dQ2NinHaC5c" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dQ2NinHaC5c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 or click this [youtube link](https://www.youtube.com/watch?v=dQ2NinHaC5c)
 

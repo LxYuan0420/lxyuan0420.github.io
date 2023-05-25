@@ -11,13 +11,13 @@ and we'll even show you some examples of the query results. So, let's dive in!
 
 The high-level idea is to:
 
-Load PDFs from a directory.
-Read all the texts and split them into chunks.
-Convert each chunk into an embedding.
-Save the embedding into ChromaDB.
-Convert the user's query input into an embedding.
-Find the most relevant chunk based on embedding similarity.
-Output the selected chunk.
+- Load PDFs from a directory.
+- Read all the texts and split them into chunks.
+- Convert each chunk into an embedding.
+- Save the embedding into ChromaDB.
+- Convert the user's query input into an embedding.
+- Find the most relevant chunk based on embedding similarity.
+- Output the selected chunk.
 
 The code is pretty simple:
 
@@ -31,6 +31,9 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import RetrievalQA
+
+
+os.environ["OPENAI_API_KEY"] = "<your-openai-api-key>"
 
 loader = PyPDFDirectoryLoader("/content/my_pdf_dir")
 docs = loader.load()
@@ -64,7 +67,7 @@ while True:
 
 {% endhighlight %}
 
-Below is the output:
+Below is the terminal output:
 {% highlight python %}
 >>>
 Enter a query: Refer to Dragon Group International financial report, what is the reported "Cash and cash equivalent" amount as of 30 September 2022?
@@ -92,83 +95,35 @@ The net book value of the assets disposed of by the Group during the six months 
 
 {% endhighlight %}
 
-###### Test-1: Extract single and large table.
-{% include image.html path="documentation/camelot_textract_single_comparison.png" path-detail="documentation/camelot_textract_single_comparison.png" alt="Camelot vs AWS on single-table test" %}
+Below are screenshot images that include the asnwer from the target page:
 
-Refer to the image above, left-hand-side is the Camelot output saved as csv file; middle is the AWS textract output; right-hand-side is the input pdf page. 
+Q1-review: Unable to extract or answer the correct value from the Cash-flow
+table. I believe it is because the texts in the table are jumbled together.
+{% include image.html path="documentation/docqa_q1.png" path-detail="documentation/docqa_q1.png" alt="q1" %}
 
-In this case, i think AWS produced better output for me: 
-- (1) Capture the entire table;
-- (2) Long line item are captured and grouped correctly (i.e., see the third underlined section title - Other comphrensions Income); 
-- (3) Negative numbers are parsed as the original format (i.e., output as (9513) instead of -9513); 
-- (4) Column header texts are grouped together (i.e., Mar 2022 $'000').
+Q2-review: Model answered the company is domiciled and incorporated in
+Singapore, which is correct. However, I'm expecting the model give me a full
+address as answer.
+{% include image.html path="documentation/docqa_q2.png" path-detail="documentation/docqa_q2.png" alt="q2" %}
 
-The third point is not necessarily an issue but personally i prefer original
-format.
+Q3-review: We got the correct answer this time. There is no dividend for the periods ended 30-Sep-2022 and 30-Sep-2021.
+{% include image.html path="documentation/docqa_q3.png" path-detail="documentation/docqa_q3.png" alt="q3" %}
 
-----
+Q4-review: Got the correct value 1.09 from the table.
+{% include image.html path="documentation/docqa_q4.png" path-detail="documentation/docqa_q4.png" alt="q4" %}
 
-###### Test-2: Extract multi-tables.
-{% include image.html path="documentation/camelot_textract_comparison.png" path-detail="documentation/camelot_textract_comparison.png" alt="Camelot vs AWS on multi-table test" %}
-Similarly, camelot output is on the left hand side whereas AWS textract output
-is the middle one. 
+Q5-review: Got the correct value 1.16 from the table. I think it is just lucky
+as we all know the text from table are actually jumbled together and is not a
+proper sentence like the Q3 dividend case.
+{% include image.html path="documentation/docqa_q5.png" path-detail="documentation/docqa_q5.png" alt="q5" %}
 
-In this test case, AWS produced better result again: 
-- (1) Long line item are grouped as one cell (look at last row of the first table.); 
-- (2) Captured the second table at the bottom of the page. However, one noticable mistake from AWS
-is that the `Note` column in the second table is merged into the left-hand-side
-row-header column.
-
-----
-
-
-###### Image below is the screenshot of AWS textract UI.
-
-{% include image.html path="documentation/aws-textract-ui.png" path-detail="documentation/aws-textract-ui.png" alt="AWS textract UI" %}
-
-----
-
-###### Sample Camelot code
-{% highlight python %}
-# installation 
-!pip install "camelot-py[base]"
-
-# fix: PyPDF2.errors.DeprecationError
-# source: https://github.com/camelot-dev/camelot/issues/339
-!pip install 'PyPDF2<3.0'
-
-# fix: RuntimeError: Please make sure that Ghostscript is installed
-# source: https://github.com/atlanhq/camelot/issues/184
-!apt install ghostscript python3-tk
-from ctypes.util import find_library
-find_library("gs")
-
-# fix: DependencyError: PyCryptodome is required for AES algorithm
-!pip install pycryptodome==3.15.0
-
-import camelot
-
-# Test-1: single-table
-table = camelot.read_pdf(
-    "/content/SG220527OTHRMX7S-travelite_holdings_ltd.pdf", 
-    pages='1', 
-    flavor='stream'
-)
-# save as csv file
-table[0].to_csv("single.csv")
-
-
-# Test-2: multi-tables
-table = camelot.read_pdf(
-    "/content/SG220805OTHR7ZPG_Sembcorp Industries Ltd_20220805072353_00_FS_2Q_20220630.pdf",
-    pages='6',
-    flavor='stream'
-)
-# save as csv file
-table[0].to_csv("multi.csv")
-{% endhighlight %}
+Q6-review: The model answered it correctly and personally I like this
+question-answer pair the most as the model rephrased it instead of directly
+extracting or copying the paragraph from the page.
+{% include image.html path="documentation/docqa_q6.png" path-detail="documentation/docqa_q6.png" alt="q6" %}
 
 
 Related:
-- [Discussion on HN](https://news.ycombinator.com/item?id=20470439)
-- [OCR spelling correction is hard](https://maxhalford.github.io/blog/ocr-spelling-correction-is-hard/)
+- [DocQA Notebook](https://github.com/LxYuan0420/nlp/blob/main/notebooks/DocQA_with_PDFs_with_LangChain_and_OpenAI.ipynb)
+- [GPT-4 and LangChain: Building Python Chatbot with PDF Integration](https://blog.nextideatech.com/chat-with-documents-using-langchain-gpt-4-python/)
+- [LangChain + OpenAI tutorial: Building a Q&A system w/ own text data](https://www.youtube.com/watch?v=DYOU_Z0hAwo)

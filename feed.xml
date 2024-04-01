@@ -1,20 +1,90 @@
----
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom" xmlns:dc="https://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ site.name | xml_escape }}</title>
-    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
-    <link>{{ site.url }}</link>
-    <atom:link href="{{ page.path | absolute_url }}" rel="self" type="application/rss+xml" />
-    {% for post in site.posts limit:10 %}
+    <title>Lx</title>
+    <description></description>
+    <link>https://lxyuan0420.github.io</link>
+    <atom:link href="https://lxyuan0420.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.description | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | absolute_url }}</link>
-        <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+        <title>Deploying vLLMs with Docker: A Guide to Fixing NVIDIA GPU Access</title>
+        <description>A straightforward guide to resolving the 'unknown or invalid runtime name: nvidia' error for developers deploying VLLM using Docker.</description>
+        <pubDate>Mon, 01 Apr 2024 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/vllm-with-docker</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/vllm-with-docker</guid>
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>TIL: Asyncio for API Requests - Batching vs. Semaphore</title>
+        <description>This article describes the difference between manual batching vs Semaphore.</description>
+        <pubDate>Fri, 19 Jan 2024 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/til-python-batching-asyncio-semaphore</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/til-python-batching-asyncio-semaphore</guid>
+      </item>
+    
+      <item>
+        <title>Introducing PEP 736: Shorthand syntax for keyword arguments at invocation</title>
+        <description>This article describes PEP 736, which proposes the introductions of syntactic sugar `f(x=)` as a replacement for `f(x=x)`</description>
+        <pubDate>Thu, 11 Jan 2024 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/til-python-pep736-syntactic-sugar</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/til-python-pep736-syntactic-sugar</guid>
+      </item>
+    
+      <item>
+        <title>llamafile: Run Llama LLM Locally</title>
+        <description>This article describe how to run a LLM on your own computing using llamafile</description>
+        <pubDate>Thu, 30 Nov 2023 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/run-llama-llm-locally</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/run-llama-llm-locally</guid>
+      </item>
+    
+      <item>
+        <title>AWS Endpoint: Multi-model vs Multi-container</title>
+        <description>This article briefly explains the difference between multi-model and multi-container AWS endpoint deployment</description>
+        <pubDate>Fri, 18 Aug 2023 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/aws-multimodel-multicontainer</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/aws-multimodel-multicontainer</guid>
+      </item>
+    
+      <item>
+        <title>Fix: Overcomming SSH Connectivity Issues with GitLab</title>
+        <description>This article describes how to fix the issue of being unable to git clone from GitLab</description>
+        <pubDate>Mon, 31 Jul 2023 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/fix-git-clone-gitlab-ssh</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/fix-git-clone-gitlab-ssh</guid>
+      </item>
+    
+      <item>
+        <title>Fix: Failure to Start Jupyter Lab Notebook</title>
+        <description>This article describes how to fix the issue of being unable to start JupyterLab</description>
+        <pubDate>Sun, 30 Jul 2023 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/fix-failure-start-jupyter-lab</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/fix-failure-start-jupyter-lab</guid>
+      </item>
+    
+      <item>
+        <title>Running Llama2.c Inference: A Step-by-Step Guide</title>
+        <description>This article describe how to run inference on Llama2.c</description>
+        <pubDate>Thu, 27 Jul 2023 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/inference-on-llama2-c</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/inference-on-llama2-c</guid>
+      </item>
+    
+      <item>
+        <title>TIL: Finetuning Llama-2 Model with Autotrain and Lit-GPT</title>
+        <description>This article describe how to finetune the Llama-2 Model with two APIs</description>
+        <pubDate>Sat, 22 Jul 2023 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/til-finetuning-llama2-autotrain-litgpt</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/til-finetuning-llama2-autotrain-litgpt</guid>
+      </item>
+    
+      <item>
+        <title>Run Code Completion LLM Locally</title>
+        <description>This article describe how to run an offline AI Coding Assistant LLM on your CPU</description>
+        <pubDate>Fri, 07 Jul 2023 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/run-code-completion-llm-locally</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/run-code-completion-llm-locally</guid>
+      </item>
+    
   </channel>
 </rss>

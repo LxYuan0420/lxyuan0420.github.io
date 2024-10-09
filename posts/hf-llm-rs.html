@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Lx | TIL: Exploring hf-llm.rs and Rust Learnings</title>
+  <meta name="description" content="Exploring hf-llm.rs and Learning Rust Along the Way">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="TIL: Exploring hf-llm.rs and Rust Learnings">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lxyuan0420.github.io/posts/hf-llm-rs">
+  <meta property="og:description" content="Exploring hf-llm.rs and Learning Rust Along the Way">
+  <meta property="og:site_name" content="Lx">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://lxyuan0420.github.io/posts/hf-llm-rs">
+  <meta name="twitter:title" content="TIL: Exploring hf-llm.rs and Rust Learnings">
+  <meta name="twitter:description" content="Exploring hf-llm.rs and Learning Rust Along the Way">
+
+  
+    <meta property="og:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://lxyuan0420.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Lx Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Lx">Lx</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/lxyuan" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/LxYuan0420" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/likxunyuan" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:lxyuan0420@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>TIL: Exploring hf-llm.rs and Rust Learnings</h1>
+            <p>Exploring hf-llm.rs and Learning Rust Along the Way</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    September 7, 2024
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      4 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>Today I spent some time working with <code class="highlighter-rouge">hf-llm.rs</code>, a Rust library for interacting with Hugging Face models. Even though it’s still in early development, I found it surprisingly easy to get started, and things worked really well. The setup was smooth, and running the models didn’t require much effort.</p>
+
+<p>One thing to note is that some models require a Hugging Face Pro subscription. When I encountered this, I decided to switch to using the model <code class="highlighter-rouge">google/gemma-1.1-7b-it</code>, which worked just as nicely for my case without needing a subscription. It’s definitely worth keeping an eye on this project as it evolves.</p>
+
+<p>Some example outputs:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">➜  hf-llm.rs git:<span class="o">(</span>main<span class="o">)</span> cargo run <span class="nt">--release</span> <span class="nt">--</span> <span class="nt">-m</span> <span class="s2">"google/gemma-1.1-7b-it"</span> <span class="nt">-c</span>
+    Finished <span class="sb">`</span>release<span class="sb">`</span> profile <span class="o">[</span>optimized] target<span class="o">(</span>s<span class="o">)</span> <span class="k">in </span>0.43s
+     Running <span class="sb">`</span>target/release/hf-llm <span class="nt">-m</span> google/gemma-1.1-7b-it <span class="nt">-c</span><span class="sb">`</span>
+Starting chat mode. Type <span class="s1">'exit'</span> to end the conversation.
+You: Write a Python <span class="k">function </span>that prints the numbers from 1 to 100, but <span class="k">for </span>multiples of 3, print <span class="s2">"Fizz"</span> instead of the number, and <span class="k">for </span>multiples of 5, print <span class="s2">"Buzz"</span><span class="nb">.</span> For numbers that are multiples of both 3 and 5, print <span class="s2">"FizzBuzz"</span><span class="nb">.</span>
+<span class="sb">```</span>python
+def fizzbuzz<span class="o">(</span>limit<span class="o">)</span>:
+    <span class="k">for </span>i <span class="k">in </span>range<span class="o">(</span>1, limit + 1<span class="o">)</span>:
+        <span class="k">if </span>i % 3 <span class="o">==</span> 0 and i % 5 <span class="o">==</span> 0:
+            print<span class="o">(</span><span class="s2">"FizzBuzz"</span><span class="o">)</span>
+        <span class="k">elif </span>i % 3 <span class="o">==</span> 0:
+            print<span class="o">(</span><span class="s2">"Fizz"</span><span class="o">)</span>
+        <span class="k">elif </span>i % 5 <span class="o">==</span> 0:
+            print<span class="o">(</span><span class="s2">"Buzz"</span><span class="o">)</span>
+        <span class="k">else</span>:
+            print<span class="o">(</span>i<span class="o">)</span>
+<span class="sb">```</span>
+
+<span class="k">**</span>Example Usage:<span class="k">**</span>
+
+<span class="sb">```</span>python
+fizzbuzz<span class="o">(</span>100<span class="o">)</span>
+<span class="sb">```</span>
+
+<span class="k">**</span>Output:<span class="k">**</span>
+
+<span class="sb">```</span>
+1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+...
+<span class="sb">```</span>
+
+<span class="k">**</span>Explanation:<span class="k">**</span>
+
+<span class="k">*</span> The <span class="k">function </span>takes one argument, <span class="sb">`</span>limit<span class="sb">`</span>, which defines the upper limit of the range.
+<span class="k">*</span> The <span class="sb">`</span><span class="k">for</span><span class="sb">`</span> loop iterates over the numbers from 1 to <span class="sb">`</span>limit<span class="sb">`</span><span class="nb">.</span>
+<span class="k">*</span> Inside the loop, an <span class="sb">`</span><span class="k">if</span><span class="nt">-elif</span><span class="sb">`</span> statement checks <span class="k">if </span>the number is a multiple of both 3 and 5, 3, or 5.
+<span class="k">*</span> If the number is a multiple of both 3 and 5, it prints <span class="s2">"FizzBuzz"</span><span class="nb">.</span>
+<span class="k">*</span> If the number is a multiple of 3, it prints <span class="s2">"Fizz"</span><span class="nb">.</span>
+<span class="k">*</span> If the number is a multiple of 5, it prints <span class="s2">"Buzz"</span><span class="nb">.</span>
+<span class="k">*</span> Otherwise, it prints the number.</code></pre></figure>
+
+<p>While working with this, I also learned some Rust fundamentals that were new to me:</p>
+
+<ul>
+  <li><strong>Cargo and rustc</strong>:
+    <ul>
+      <li><strong>Cargo</strong>: This is Rust’s tool for managing projects, dependencies, building, running, and testing code. It’s like combining <code class="highlighter-rouge">pip</code> and <code class="highlighter-rouge">make</code>.</li>
+      <li><strong>rustc</strong>: The Rust compiler that actually compiles your Rust code into an executable. Cargo interacts with <code class="highlighter-rouge">rustc</code> behind the scenes during the build process, so you mostly use Cargo day-to-day.</li>
+    </ul>
+  </li>
+  <li><strong>Cargo build with/without <code class="highlighter-rouge">--release</code></strong>:
+    <ul>
+      <li><strong><code class="highlighter-rouge">cargo build</code></strong>: Compiles the code in debug mode, including debugging symbols, which makes the binary larger and slower but easier to debug.</li>
+      <li><strong><code class="highlighter-rouge">cargo build --release</code></strong>: Compiles the code with optimizations for better performance, resulting in a smaller, faster binary.</li>
+    </ul>
+  </li>
+  <li><strong>Cargo run with/without <code class="highlighter-rouge">--release</code></strong>:
+    <ul>
+      <li><strong><code class="highlighter-rouge">cargo run</code></strong>: Compiles and runs your project in debug mode. It’s useful for development when you’re frequently changing code.</li>
+      <li><strong><code class="highlighter-rouge">cargo run --release</code></strong>: Compiles your project in release mode and then runs the optimized version, useful when you’re testing performance or final code.</li>
+    </ul>
+  </li>
+  <li><strong>Cargo.toml</strong>:
+    <ul>
+      <li>This file defines the project details (name, version, authors) and the dependencies your project requires. It’s similar to <code class="highlighter-rouge">requirements.txt</code> but more feature-rich.</li>
+      <li>Example:</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span>package]
+name <span class="o">=</span> <span class="s2">"my_project"</span>
+version <span class="o">=</span> <span class="s2">"0.1.0"</span>
+edition <span class="o">=</span> <span class="s2">"2021"</span>
+
+<span class="o">[</span>dependencies]
+serde <span class="o">=</span> <span class="s2">"1.0"</span></code></pre></figure>
+
+<ul>
+  <li><strong>Separating Commands Using <code class="highlighter-rouge">--</code></strong>:
+    <ul>
+      <li>The <code class="highlighter-rouge">--</code> is used to separate arguments intended for Cargo from arguments that are meant for your Rust program.</li>
+      <li>Example:</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">cargo run <span class="nt">--release</span> <span class="nt">--</span> <span class="nt">-m</span> <span class="s2">"google/gemma-1.1-7b-it"</span> <span class="nt">-c</span></code></pre></figure>
+
+<ul>
+  <li><strong>How to Install and Manage PATH</strong>:
+    <ul>
+      <li>To install Rust and Cargo, and ensure Cargo’s binaries are in your <code class="highlighter-rouge">PATH</code>, follow these steps:</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Install Rust and Cargo using rustup</span>
+curl <span class="nt">--proto</span> <span class="s1">'=https'</span> <span class="nt">--tlsv1</span>.2 <span class="nt">-sSf</span> https://sh.rustup.rs | sh
+
+<span class="c"># Add Cargo to your shell's PATH so it can be accessed globally</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.cargo/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+
+<span class="c"># Reload your shell configuration to apply the new PATH</span>
+<span class="nb">source</span> ~/.zshrc  <span class="c"># or source ~/.bashrc</span>
+
+<span class="c"># Verify that Cargo and Rust are properly installed</span>
+cargo <span class="nt">--version</span>
+rustc <span class="nt">--version</span></code></pre></figure>
+
+<p>These are the basics I picked up while working with hf-llm.rs and learning Rust. If you’ve used Python extensively, you’ll find that Rust has some similarities, but it’s powerful and efficient in its own way.</p>
+
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=TIL:+Exploring+hf-llm.rs+and+Rust+Learnings%20-%20https://lxyuan0420.github.io/posts/hf-llm-rs%20by%20@lxyuan" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://lxyuan0420.github.io/posts/hf-llm-rs" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Made with <a href="https://github.com/nielsenramon/chalk" rel="noreferrer noopener" target="_blank" title="Download Chalk">Chalk</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-3ee2c63bbac916f96cd7f90e83ab767f058ead1301444c9966f5156911c8be7f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Lx | TIL: Evaluator from Huggingface</title>
+  <meta name="description" content="This article describe the usage of evaluator from Huggingface">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="TIL: Evaluator from Huggingface">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lxyuan0420.github.io/posts/til-huggingface-evaluator">
+  <meta property="og:description" content="This article describe the usage of evaluator from Huggingface">
+  <meta property="og:site_name" content="Lx">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://lxyuan0420.github.io/posts/til-huggingface-evaluator">
+  <meta name="twitter:title" content="TIL: Evaluator from Huggingface">
+  <meta name="twitter:description" content="This article describe the usage of evaluator from Huggingface">
+
+  
+    <meta property="og:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://lxyuan0420.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Lx Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Lx">Lx</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/lxyuan" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/LxYuan0420" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/likxunyuan" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:lxyuan0420@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>TIL: Evaluator from Huggingface</h1>
+            <p>This article describe the usage of evaluator from Huggingface</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    June 4, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>TIL that Hugging Face has a library called <code class="highlighter-rouge">evaluate</code> which includes a useful
+<code class="highlighter-rouge">Evaluator</code> class for quickly evaluating transformer models on datasets. I will
+cover how to use this Evaluator class and also address a minor issue we
+currently have, along with its workaround.</p>
+
+<p>The following code is to load the <code class="highlighter-rouge">banking77</code> dataset and one of the models
+that I fine-tuned and pushed to HF mode hub:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">transformers</span> <span class="n">datasets</span> <span class="n">evaluate</span>
+
+<span class="kn">import</span> <span class="nn">evaluate</span>
+<span class="kn">from</span> <span class="nn">evaluate</span> <span class="kn">import</span> <span class="n">evaluator</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForSequenceClassification</span>
+
+<span class="n">task_evaluator</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">(</span><span class="s">"text-classification"</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s">"banking77"</span><span class="p">)</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">"lxyuan/banking-intent-distilbert-classifier"</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">"lxyuan/banking-intent-distilbert-classifier"</span><span class="p">)</span>
+
+<span class="c1"># currently this feature development is on-hold so we will use sklearn to do the evaluation
+# https://discuss.huggingface.co/t/combining-metrics-for-multiclass-predictions-evaluations/21792/11
+</span><span class="n">results</span> <span class="o">=</span> <span class="n">task_evaluator</span><span class="p">.</span><span class="n">compute</span><span class="p">(</span>
+    <span class="n">model_or_pipeline</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">"test"</span><span class="p">],</span>
+    <span class="n">metric</span><span class="o">=</span><span class="n">evaluate</span><span class="p">.</span><span class="n">combine</span><span class="p">([</span>
+        <span class="s">"accuracy"</span><span class="p">,</span>
+<span class="c1">#        evaluate.load("precision", average="macro"),
+#        evaluate.load("recall", average="macro"),
+#        evaluate.load("f1", average="macro")
+</span>    <span class="p">]),</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">label_mapping</span><span class="o">=</span><span class="n">model</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">label2id</span><span class="p">,</span>
+    <span class="n">strategy</span><span class="o">=</span><span class="s">"simple"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s">'accuracy'</span><span class="p">:</span> <span class="mf">0.9243506493506494</span><span class="p">,</span>
+ <span class="s">'total_time_in_seconds'</span><span class="p">:</span> <span class="mf">30.070161925999855</span><span class="p">,</span>
+ <span class="s">'samples_per_second'</span><span class="p">:</span> <span class="mf">102.42711720607363</span><span class="p">,</span>
+ <span class="s">'latency_in_seconds'</span><span class="p">:</span> <span class="mf">0.009763039586363589</span><span class="p">}</span></code></pre></figure>
+
+<p>As mentioned in the code snippet that the development of <code class="highlighter-rouge">Evaluator</code> feature is
+currently on-hold so it doesn’t support precision/recall/f1 metrics for
+multiclass problem. If you uncomment them and run the code, you will see error
+message like:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">ValueError</span><span class="p">:</span> <span class="n">Target</span> <span class="ow">is</span> <span class="n">multiclass</span> <span class="n">but</span> <span class="n">average</span><span class="o">=</span><span class="s">'binary'</span><span class="p">.</span> <span class="n">Please</span> <span class="n">choose</span> <span class="n">another</span> <span class="n">average</span> <span class="n">setting</span><span class="p">,</span> <span class="n">one</span> <span class="n">of</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="s">'micro'</span><span class="p">,</span> <span class="s">'macro'</span><span class="p">,</span> <span class="s">'weighted'</span><span class="p">].</span></code></pre></figure>
+
+<p>The workaround is simply switch to sklearn classification report function, as follows:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="n">text_classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s">"text-classification"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">x_test</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s">"test"</span><span class="p">][</span><span class="s">"text"</span><span class="p">]]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="p">[</span><span class="n">label</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s">"test"</span><span class="p">][</span><span class="s">"label"</span><span class="p">]]</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">text_classifier</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">label2id</span><span class="p">[</span><span class="n">pred</span><span class="p">[</span><span class="s">'label'</span><span class="p">]]</span> <span class="k">for</span> <span class="n">pred</span> <span class="ow">in</span> <span class="n">y_pred</span><span class="p">]</span>
+
+<span class="n">label_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">label</span> <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">model</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">id2label</span><span class="p">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">label_names</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Classification Report:</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">report</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span>
+<span class="n">Classification</span> <span class="n">Report</span><span class="p">:</span>
+                                                   <span class="n">precision</span>    <span class="n">recall</span>  <span class="n">f1</span><span class="o">-</span><span class="n">score</span>   <span class="n">support</span>
+
+                                <span class="n">activate_my_card</span>     <span class="mf">1.0000</span>    <span class="mf">0.9750</span>    <span class="mf">0.9873</span>        <span class="mi">40</span>
+                                       <span class="n">age_limit</span>     <span class="mf">0.9756</span>    <span class="mf">1.0000</span>    <span class="mf">0.9877</span>        <span class="mi">40</span>
+                         <span class="n">apple_pay_or_google_pay</span>     <span class="mf">1.0000</span>    <span class="mf">1.0000</span>    <span class="mf">1.0000</span>        <span class="mi">40</span>
+                                     <span class="n">atm_support</span>     <span class="mf">0.9750</span>    <span class="mf">0.9750</span>    <span class="mf">0.9750</span>        <span class="mi">40</span>
+                                <span class="n">automatic_top_up</span>     <span class="mf">1.0000</span>    <span class="mf">0.9000</span>    <span class="mf">0.9474</span>        <span class="mi">40</span>
+                                <span class="p">...</span>
+                                   <span class="n">verify_top_up</span>     <span class="mf">1.0000</span>    <span class="mf">1.0000</span>    <span class="mf">1.0000</span>        <span class="mi">40</span>
+                        <span class="n">virtual_card_not_working</span>     <span class="mf">1.0000</span>    <span class="mf">0.9250</span>    <span class="mf">0.9610</span>        <span class="mi">40</span>
+                              <span class="n">visa_or_mastercard</span>     <span class="mf">0.9737</span>    <span class="mf">0.9250</span>    <span class="mf">0.9487</span>        <span class="mi">40</span>
+                             <span class="n">why_verify_identity</span>     <span class="mf">0.9118</span>    <span class="mf">0.7750</span>    <span class="mf">0.8378</span>        <span class="mi">40</span>
+                   <span class="n">wrong_amount_of_cash_received</span>     <span class="mf">1.0000</span>    <span class="mf">0.8750</span>    <span class="mf">0.9333</span>        <span class="mi">40</span>
+         <span class="n">wrong_exchange_rate_for_cash_withdrawal</span>     <span class="mf">0.9730</span>    <span class="mf">0.9000</span>    <span class="mf">0.9351</span>        <span class="mi">40</span>
+
+                                        <span class="n">accuracy</span>                         <span class="mf">0.9244</span>      <span class="mi">3080</span>
+                                       <span class="n">macro</span> <span class="n">avg</span>     <span class="mf">0.9282</span>    <span class="mf">0.9244</span>    <span class="mf">0.9243</span>      <span class="mi">3080</span>
+                                    <span class="n">weighted</span> <span class="n">avg</span>     <span class="mf">0.9282</span>    <span class="mf">0.9244</span>    <span class="mf">0.9243</span>      <span class="mi">3080</span></code></pre></figure>
+
+<p>That’s it!</p>
+
+<p>Related:</p>
+<ul>
+  <li><a href="https://discuss.huggingface.co/t/combining-metrics-for-multiclass-predictions-evaluations/21792">Combining metrics for multiclass predictions evaluations</a></li>
+  <li><a href="https://huggingface.co/docs/evaluate/base_evaluator">Using the evaluator</a></li>
+  <li><a href="https://huggingface.co/lxyuan/banking-intent-distilbert-classifier">lxyuan/banking-intent-distilbert-classifier</a></li>
+</ul>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=TIL:+Evaluator+from+Huggingface%20-%20https://lxyuan0420.github.io/posts/til-huggingface-evaluator%20by%20@lxyuan" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://lxyuan0420.github.io/posts/til-huggingface-evaluator" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Made with <a href="https://github.com/nielsenramon/chalk" rel="noreferrer noopener" target="_blank" title="Download Chalk">Chalk</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-3ee2c63bbac916f96cd7f90e83ab767f058ead1301444c9966f5156911c8be7f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

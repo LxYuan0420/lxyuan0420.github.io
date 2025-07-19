@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Lx | TIL: vim-pydocstring</title>
+  <meta name="description" content="This article introduce the vim plugin for auto generate python docstring.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="TIL: vim-pydocstring">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lxyuan0420.github.io/posts/til-vim-pydocstring-plugin">
+  <meta property="og:description" content="This article introduce the vim plugin for auto generate python docstring.">
+  <meta property="og:site_name" content="Lx">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://lxyuan0420.github.io/posts/til-vim-pydocstring-plugin">
+  <meta name="twitter:title" content="TIL: vim-pydocstring">
+  <meta name="twitter:description" content="This article introduce the vim plugin for auto generate python docstring.">
+
+  
+    <meta property="og:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://lxyuan0420.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Lx Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Lx">Lx</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/lxyuan" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/LxYuan0420" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/likxunyuan" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:lxyuan0420@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>TIL: vim-pydocstring</h1>
+            <p>This article introduce the vim plugin for auto generate python docstring.</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    May 6, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>If you’re a Python programmer who values thorough documentation practices, you
+might find the vim-pydocstring plugin to be a useful addition to your workflow.
+This plugin for Vim enables the automatic generation of Python (template)
+docstrings, which can save significant time and effort compared to manually
+creating them.</p>
+
+<p>To begin using vim-pydocstring, you need to install it as a Vim plugin. It is
+recommended that you use a plugin manager like vimplug and add this line to
+your <code class="highlighter-rouge">.vimrc</code> file:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Plug <span class="s1">'heavenshell/vim-pydocstring'</span>, <span class="o">{</span> <span class="s1">'do'</span>: <span class="s1">'make install'</span>, <span class="s1">'for'</span>: <span class="s1">'python'</span> <span class="o">}</span> </code></pre></figure>
+
+<p>One of the standout features of vim-pydocstring is its ability to insert both
+one-line and multi-line docstrings quickly and easily. By moving the cursor to
+a def or class keyword line and typing “:Pydocstring,” a docstring template
+appears below the line, reducing the time needed to create documentation
+significantly. Another way that I prefer to run this plugin is <code class="highlighter-rouge">Ctrl _</code> (ctrl
+button and underscore). I achieved that by adding the following command to my
+<code class="highlighter-rouge">.vimrc</code> file:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">nmap &lt;silent&gt; &lt;C-_&gt; &lt;Plug&gt;<span class="o">(</span>pydocstring<span class="o">)</span>
+autocmd FileType python setlocal <span class="nv">tabstop</span><span class="o">=</span>4 <span class="nv">shiftwidth</span><span class="o">=</span>4 smarttab expandtab</code></pre></figure>
+
+<p>In addition to the core functionality of the plugin, vim-pydocstring allows
+customization of various settings to fit your preferences. For instance, you
+can adjust the tab and shift widths and choose between different built-in
+docstring formats like Sphinx, Numpy, and Google. Personally, I prefer the
+numpy style and so I also added the following command to my <code class="highlighter-rouge">.vimrc</code> file:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">let </span>g:pydocstring_formatter <span class="o">=</span> <span class="s1">'numpy'</span></code></pre></figure>
+
+<p>Once it all set, you can start using vim-pydocstring to generate Python
+docstrings and enhance the quality of your code documentation.  Try it out to
+see if it can make your workflow more efficient!</p>
+
+<p>Below is the <code class="highlighter-rouge">before</code> and <code class="highlighter-rouge">after</code> demo:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1"># before
+</span><span class="k">class</span> <span class="nc">Person</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"My name is </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">"</span>
+
+<span class="k">def</span> <span class="nf">group_intro</span><span class="p">(</span><span class="n">p1</span><span class="p">:</span> <span class="n">Person</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">Person</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">p1</span><span class="p">.</span><span class="n">hello</span><span class="p">()</span> <span class="o">+</span> <span class="n">p2</span><span class="p">.</span><span class="n">hello</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">output</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1"># after
+</span><span class="k">class</span> <span class="nc">Person</span><span class="p">():</span>
+    <span class="s">"""Person.
+    """</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="s">"""__init__.
+
+        Parameters
+        ----------
+        name : str
+            name
+        """</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="s">"""hello.
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        str
+
+        """</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"My name is </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">"</span>
+
+<span class="k">def</span> <span class="nf">group_intro</span><span class="p">(</span><span class="n">p1</span><span class="p">:</span> <span class="n">Person</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">Person</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s">"""group_intro.
+
+    Parameters
+    ----------
+    p1 : Person
+        p1
+    p2 : Person
+        p2
+
+    Returns
+    -------
+    str
+
+    """</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">p1</span><span class="p">.</span><span class="n">hello</span><span class="p">()</span> <span class="o">+</span> <span class="n">p2</span><span class="p">.</span><span class="n">hello</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">output</span></code></pre></figure>
+
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=TIL:+vim-pydocstring%20-%20https://lxyuan0420.github.io/posts/til-vim-pydocstring-plugin%20by%20@lxyuan" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://lxyuan0420.github.io/posts/til-vim-pydocstring-plugin" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Made with <a href="https://github.com/nielsenramon/chalk" rel="noreferrer noopener" target="_blank" title="Download Chalk">Chalk</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-3ee2c63bbac916f96cd7f90e83ab767f058ead1301444c9966f5156911c8be7f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

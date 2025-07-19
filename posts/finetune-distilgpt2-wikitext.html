@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Lx | Finetune DistilGPT2 Language Model on Wikitext Dataset</title>
+  <meta name="description" content="This article describe my experience of finetuning DistilGPT-2 Model on WikiText.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Finetune DistilGPT2 Language Model on Wikitext Dataset">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lxyuan0420.github.io/posts/finetune-distilgpt2-wikitext">
+  <meta property="og:description" content="This article describe my experience of finetuning DistilGPT-2 Model on WikiText.">
+  <meta property="og:site_name" content="Lx">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://lxyuan0420.github.io/posts/finetune-distilgpt2-wikitext">
+  <meta name="twitter:title" content="Finetune DistilGPT2 Language Model on Wikitext Dataset">
+  <meta name="twitter:description" content="This article describe my experience of finetuning DistilGPT-2 Model on WikiText.">
+
+  
+    <meta property="og:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://lxyuan0420.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Lx Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Lx">Lx</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/lxyuan" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/LxYuan0420" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/likxunyuan" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:lxyuan0420@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Finetune DistilGPT2 Language Model on Wikitext Dataset</h1>
+            <p>This article describe my experience of finetuning DistilGPT-2 Model on WikiText.</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    April 23, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      5 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>TLDR: Try the finetuned DistilGPT-2 model <a href="https://huggingface.co/lxyuan/distilgpt2-finetuned-wikitext2">here</a> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20"></p>
+
+<p>I have some free time this weekend and I always wanted to fine tune a language
+model to gain some hands-on experience.  Huge thanks to Huggingface for making
+everything so accessible and easy.</p>
+
+<p>In this blog, i share things that i learnt from this fun project and break down
+the idea of fine-tuning language model into 3 parts:</p>
+<ul>
+  <li>Data</li>
+  <li>Model</li>
+  <li>Trainer</li>
+</ul>
+
+<h4 id="data">Data</h4>
+
+<p>In this example, we are using
+<a href="https://huggingface.co/datasets/wikitext">wikitext</a> dataset. The WikiText
+language modeling dataset is a collection of over 100 million tokens extracted
+from the set of verified Good and Featured articles on Wikipedia.</p>
+
+<h4 id="dataset-preview">Dataset Preview:</h4>
+
+<p><a href="/assets/documentation/wikitext-preview-9b24bf139c0af9e4e1fdace31c07888b95e8d43ad6c7a369b4acec1ea7f984e7.png">
+  <img src="/assets/documentation/wikitext-preview-9b24bf139c0af9e4e1fdace31c07888b95e8d43ad6c7a369b4acec1ea7f984e7.png" alt="Wikitext dataset preview" class="zooming" data-rjs="/assets/documentation/wikitext-preview-9b24bf139c0af9e4e1fdace31c07888b95e8d43ad6c7a369b4acec1ea7f984e7.png" data-zooming-width="990" data-zooming-height="568">
+</a></p>
+
+<p>As we can see, some of the texts are a full paragraph of a Wikipedia article
+while others are just titles or empty lines. The first step is to tokenize them
+and then split them in small chunks of a certain <code class="highlighter-rouge">block_size</code> using the following
+code:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span>
+    
+
+<span class="k">def</span> <span class="nf">tokenize_function</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="s">"text"</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">group_texts</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+    <span class="c1"># Concatenate all texts.
+</span>    <span class="n">concatenated_examples</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="p">[])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">.</span><span class="n">keys</span><span class="p">()}</span>
+    <span class="n">total_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">concatenated_examples</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">examples</span><span class="p">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="c1"># We drop the small remainder, we could add padding if the model supported it instead of this drop, you can
+</span>        <span class="c1"># customize this part to your needs.
+</span>    <span class="n">total_length</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_length</span> <span class="o">//</span> <span class="n">block_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">block_size</span>
+    <span class="c1"># Split by chunks of max_len.
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">block_size</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_length</span><span class="p">,</span> <span class="n">block_size</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">concatenated_examples</span><span class="p">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="n">result</span><span class="p">[</span><span class="s">"labels"</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s">"input_ids"</span><span class="p">].</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="n">model_checkpoint</span> <span class="o">=</span> <span class="s">"distilgpt2"</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_checkpoint</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">tokenized_datasets</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">tokenize_function</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">num_proc</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="p">[</span><span class="s">"text"</span><span class="p">])</span>
+
+<span class="n">lm_datasets</span> <span class="o">=</span> <span class="n">tokenized_datasets</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span>
+    <span class="n">group_texts</span><span class="p">,</span>
+    <span class="n">batched</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">num_proc</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<span class="p">)</span></code></pre></figure>
+
+<p>We can refer to the dummy example below to understand how the <code class="highlighter-rouge">group_texts()</code>
+function works. The idea is to concatenate input_ids of all examples (i.e, make it a long list of int) together
+and split them into small chunks (i.e., make it a list of list of int).</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">examples</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"input_ids"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+        <span class="p">[],</span>
+        <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">examples</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s">'input_ids'</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]}</span>
+
+<span class="n">block_size</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">group_texts</span><span class="p">(</span><span class="n">examples</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="c1"># concat_examples = {
+#    'input_ids': [1, 1, 1, 2, 2, 2, 4, 4, 4]
+#    }
+</span>
+<span class="p">{</span><span class="s">'input_ids'</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span>
+ <span class="s">'labels'</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]}</span> </code></pre></figure>
+
+<p>The remainder <code class="highlighter-rouge">4</code> is excluded at the end. You may also notice that we duplicate the input_ids for the labels. This is because HF model class will automatically apply the shifting to right, so we don’t need to any thing manually. One can refer to the official pytorch code implemention to learn more about <a href="https://github.com/huggingface/transformers/blob/820c46a707ddd033975bc3b0549eea200e64c7da/src/transformers/models/gpt2/modeling_gpt2.py#L1068">that</a>.</p>
+
+<h3 id="model">Model</h3>
+
+<p>For the model part, we just need to load the pretrained DistilGPT-2 model and define training arguments.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">Trainer</span><span class="p">,</span> <span class="n">TrainingArguments</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_checkpoint</span><span class="p">)</span>
+
+<span class="n">model_name</span> <span class="o">=</span> <span class="n">model_checkpoint</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"/"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s">-finetuned-wikitext2"</span><span class="p">,</span>
+    <span class="n">evaluation_strategy</span> <span class="o">=</span> <span class="s">"epoch"</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">2e-5</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">per_device_eval_batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+    <span class="n">push_to_hub</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+<span class="p">)</span></code></pre></figure>
+
+<p>As we wanted to push to the final trained model to HF model hub, we set the argument <code class="highlighter-rouge">push_to_hub=True</code> and set the <code class="highlighter-rouge">output_dir</code> argument (i.e, the first one positional argument in TrainingArguments()). If things went well, we could download and try our model using namespace:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">"lxyuan/distilgpt2-finetuned-wikitext2"</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s">"lxyuan/distilgpt2-finetuned-wikitext2"</span><span class="p">)</span></code></pre></figure>
+
+<h3 id="trainer">Trainer</h3>
+
+<p>We then can start training them as usual. We just need to run 2 more commands to push the model and tokenizer to our repo: <code class="highlighter-rouge">distilgpt2-finetuned-wikitext2</code>.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">lm_datasets</span><span class="p">[</span><span class="s">"train"</span><span class="p">],</span>
+    <span class="n">eval_dataset</span><span class="o">=</span><span class="n">lm_datasets</span><span class="p">[</span><span class="s">"validation"</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">trainer</span><span class="p">.</span><span class="n">train</span><span class="p">()</span>
+
+<span class="n">trainer</span><span class="p">.</span><span class="n">push_to_hub</span><span class="p">()</span>
+<span class="n">tokenizer</span><span class="p">.</span><span class="n">push_to_hub</span><span class="p">(</span><span class="s">"distilgpt2-finetuned-wikitext2"</span><span class="p">)</span></code></pre></figure>
+
+<h3 id="inferecing-example">Inferecing example</h3>
+
+<p>One of the easiet way to try the model is to use <code class="highlighter-rouge">pipeline()</code>, as follows:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s">"lxyuan/distilgpt2-finetuned-wikitext2"</span><span class="p">)</span>
+<span class="n">generator</span><span class="p">(</span><span class="s">"Lion King is"</span><span class="p">,</span> <span class="n">pad_token_id</span><span class="o">=</span><span class="n">generator</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_token_id</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="p">[{</span><span class="s">'generated_text'</span><span class="p">:</span> <span class="s">'Lion King is the only king of the two lands currently controlled by the emperor. King Henry II has since ruled through the Middle Ages, most recently after his death. Queen Edward I of England was assassinated in 1765. Edward II died in 1666. </span><span class="se">\n</span><span class="s">'</span><span class="p">},</span>
+ <span class="p">{</span><span class="s">'generated_text'</span><span class="p">:</span> <span class="s">'Lion King is a playable version of the main story arc for The New Adventures of Magic. An updated version features two characters on a different character : the Dark Knight ( Shadow Knight ) and the Knights of the Temple of the Shadow ( Z @-@ Knight ).'</span><span class="p">}]</span></code></pre></figure>
+
+<p>Extra:</p>
+<ul>
+  <li>Try model demo <a href="https://huggingface.co/lxyuan/distilgpt2-finetuned-wikitext2">here</a>
+</li>
+  <li>Follow this <a href="https://github.com/LxYuan0420/nlp/blob/main/notebooks/Fine_tune_DistilGPT2_language_model_on_wikitext_dataset.ipynb">notebook</a> to reproduce the work.</li>
+</ul>
+
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Finetune+DistilGPT2+Language+Model+on+Wikitext+Dataset%20-%20https://lxyuan0420.github.io/posts/finetune-distilgpt2-wikitext%20by%20@lxyuan" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"></path></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://lxyuan0420.github.io/posts/finetune-distilgpt2-wikitext" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"></path></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Made with <a href="https://github.com/nielsenramon/chalk" rel="noreferrer noopener" target="_blank" title="Download Chalk">Chalk</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-3ee2c63bbac916f96cd7f90e83ab767f058ead1301444c9966f5156911c8be7f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

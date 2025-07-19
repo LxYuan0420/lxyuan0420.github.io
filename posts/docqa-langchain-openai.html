@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Lx | DocQA: Chat with PDFs using LangChain and OpenAI</title>
+  <meta name="description" content="This article demostrate the query result of DocQA using LangChain and OpenAI">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="DocQA: Chat with PDFs using LangChain and OpenAI">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lxyuan0420.github.io/posts/docqa-langchain-openai">
+  <meta property="og:description" content="This article demostrate the query result of DocQA using LangChain and OpenAI">
+  <meta property="og:site_name" content="Lx">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://lxyuan0420.github.io/posts/docqa-langchain-openai">
+  <meta name="twitter:title" content="DocQA: Chat with PDFs using LangChain and OpenAI">
+  <meta name="twitter:description" content="This article demostrate the query result of DocQA using LangChain and OpenAI">
+
+  
+    <meta property="og:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://lxyuan0420.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Lx Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Lx">Lx</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/lxyuan" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/LxYuan0420" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/likxunyuan" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:lxyuan0420@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>DocQA: Chat with PDFs using LangChain and OpenAI</h1>
+            <p>This article demostrate the query result of DocQA using LangChain and OpenAI</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    May 25, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      5 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>There’s been a lot of buzz lately about LLM and how it can be used for
+different applications with OpenAI. In this article, we’ll give you a quick
+rundown on how to set up a cool DocQA application using LangChain and OpenAI,
+and we’ll even show you some examples of the query results. So, let’s dive in!</p>
+
+<p>The high-level idea is to:</p>
+
+<ul>
+  <li>Load PDFs from a directory.</li>
+  <li>Read all the texts and split them into chunks.</li>
+  <li>Convert each chunk into an embedding.</li>
+  <li>Save the embedding into ChromaDB.</li>
+  <li>Convert the user’s query input into an embedding.</li>
+  <li>Find the most relevant chunk based on embedding similarity.</li>
+  <li>Output the selected chunk.</li>
+</ul>
+
+<p>The code is pretty simple:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">langchain.document_loaders</span> <span class="kn">import</span> <span class="n">PyPDFDirectoryLoader</span>
+<span class="kn">from</span> <span class="nn">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+<span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain.chains</span> <span class="kn">import</span> <span class="n">ConversationalRetrievalChain</span>
+<span class="kn">from</span> <span class="nn">langchain.vectorstores</span> <span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">from</span> <span class="nn">langchain.embeddings</span> <span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+<span class="kn">from</span> <span class="nn">langchain.chat_models</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain.chains</span> <span class="kn">import</span> <span class="n">RetrievalQA</span>
+
+
+<span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"OPENAI_API_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"&lt;your-openai-api-key&gt;"</span>
+
+<span class="n">loader</span> <span class="o">=</span> <span class="n">PyPDFDirectoryLoader</span><span class="p">(</span><span class="s">"/content/my_pdf_dir"</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="p">.</span><span class="n">load</span><span class="p">()</span>
+
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="p">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+
+<span class="n">persist_directory</span> <span class="o">=</span> <span class="s">"./my_pdf_db"</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">OpenAIEmbeddings</span><span class="p">()</span>
+<span class="n">vectordb</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">documents</span><span class="o">=</span><span class="n">texts</span><span class="p">,</span>
+                                 <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>
+                                 <span class="n">persist_directory</span><span class="o">=</span><span class="n">persist_directory</span><span class="p">)</span>
+<span class="n">vectordb</span><span class="p">.</span><span class="n">persist</span><span class="p">()</span>
+
+<span class="n">retriever</span> <span class="o">=</span> <span class="n">vectordb</span><span class="p">.</span><span class="n">as_retriever</span><span class="p">()</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s">'gpt-3.5-turbo'</span><span class="p">)</span> <span class="c1">#gpt-4 or gpt-3.5-turbo
+</span><span class="n">qa</span> <span class="o">=</span> <span class="n">RetrievalQA</span><span class="p">.</span><span class="n">from_chain_type</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span> <span class="n">chain_type</span><span class="o">=</span><span class="s">"stuff"</span><span class="p">,</span> <span class="n">retriever</span><span class="o">=</span><span class="n">retriever</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter a query: "</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s">"exit"</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"###Prompt </span><span class="si">{</span><span class="n">user_input</span><span class="si">}</span><span class="s">"</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">llm_response</span> <span class="o">=</span> <span class="n">qa</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">llm_response</span><span class="p">[</span><span class="s">"result"</span><span class="p">])</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Exception occurred. Please try again'</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span></code></pre></figure>
+
+<p>Below is the terminal output:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span>
+<span class="n">Enter</span> <span class="n">a</span> <span class="n">query</span><span class="p">:</span> <span class="n">Refer</span> <span class="n">to</span> <span class="n">Dragon</span> <span class="n">Group</span> <span class="n">International</span> <span class="n">financial</span> <span class="n">report</span><span class="p">,</span> <span class="n">what</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">reported</span> <span class="s">"Cash and cash equivalent"</span> <span class="n">amount</span> <span class="k">as</span> <span class="n">of</span> <span class="mi">30</span> <span class="n">September</span> <span class="mi">2022</span><span class="err">?</span>
+<span class="n">I</span><span class="s">'m sorry, I cannot find the reported "Cash and cash equivalent" amount as of 30 September 2022 in the given context. The condensed consolidated balance sheet available on page 20 provides some financial information, but it does not include this specific figure.
+
+
+Enter a query: Refer to the Dragon Group financial report, where is the company located?
+According to the financial report, Dragon Group International Limited is domiciled and incorporated in Singapore.
+
+
+Enter a query: Has the company HS Optimus Holdings Limited proposed any interim dividend for the periods ending on September 30, 2022, and September 30, 2021, based on the given context
+According to the given context, there is no proposal or declaration of any dividend by HS Optimus Holdings Limited for the six months ended 30 September 2022 or the corresponding period of the immediately preceding financial year.
+
+
+Enter a query: Refer to the HS Optimus Holding Limited report, what is the reported net asset value per share as of 30 September 2022?
+The reported net asset value per share based on existing issued share capital as of 30 September 2022 is 1.09 cents.
+
+
+Enter a query: Refer to the HS Optimus Holding Limited report, what is the reported net asset value per share as of 31 Mar 2022?
+The reported net asset value per share as of 31 Mar 2022 for HS Optimus Holding Limited is 1.16 cents.
+
+
+Enter a query: What was the net book value of the assets disposed of by the Group during the six months ended September 30, 2022?
+The net book value of the assets disposed of by the Group during the six months ended September 30, 2022 was $190.</span></code></pre></figure>
+
+<p>Below are screenshot images that include the asnwer from the target page:</p>
+
+<p>Q1-review: Unable to extract or answer the correct value from the Cash-flow
+table. I believe it is because the texts in the table are jumbled together.
+<a href="/assets/documentation/docqa_q1-36de050d20ac5068a843cd6064da03eb1ae48215783028d22e27d304a019bac3.png">
+  <img src="/assets/documentation/docqa_q1-36de050d20ac5068a843cd6064da03eb1ae48215783028d22e27d304a019bac3.png" alt="q1" class="zooming" data-rjs="/assets/documentation/docqa_q1-36de050d20ac5068a843cd6064da03eb1ae48215783028d22e27d304a019bac3.png" data-zooming-width="2560" data-zooming-height="1080" />
+</a></p>
+
+<p>Q2-review: Model answered the company is domiciled and incorporated in
+Singapore, which is correct. However, I’m expecting the model give me a full
+address as answer.
+<a href="/assets/documentation/docqa_q2-4aa6f24e5799bc52616eb75dd030eeb0e63e58d87ba7b9460583a4ef466f6db0.png">
+  <img src="/assets/documentation/docqa_q2-4aa6f24e5799bc52616eb75dd030eeb0e63e58d87ba7b9460583a4ef466f6db0.png" alt="q2" class="zooming" data-rjs="/assets/documentation/docqa_q2-4aa6f24e5799bc52616eb75dd030eeb0e63e58d87ba7b9460583a4ef466f6db0.png" data-zooming-width="2560" data-zooming-height="1080" />
+</a></p>
+
+<p>Q3-review: We got the correct answer this time. There is no dividend for the periods ended 30-Sep-2022 and 30-Sep-2021.
+<a href="/assets/documentation/docqa_q3-c4eed93b7d127d6a9d5db129ec18bd3b8cc7d5806aa91bff05b7a75523fb0bdb.png">
+  <img src="/assets/documentation/docqa_q3-c4eed93b7d127d6a9d5db129ec18bd3b8cc7d5806aa91bff05b7a75523fb0bdb.png" alt="q3" class="zooming" data-rjs="/assets/documentation/docqa_q3-c4eed93b7d127d6a9d5db129ec18bd3b8cc7d5806aa91bff05b7a75523fb0bdb.png" data-zooming-width="2560" data-zooming-height="1080" />
+</a></p>
+
+<p>Q4-review: Got the correct value 1.09 from the table.
+<a href="/assets/documentation/docqa_q4-c5fb31744d32a5767aa4c3731dc8ada8464d3868a3953ff9b2c8638399bd5a5e.png">
+  <img src="/assets/documentation/docqa_q4-c5fb31744d32a5767aa4c3731dc8ada8464d3868a3953ff9b2c8638399bd5a5e.png" alt="q4" class="zooming" data-rjs="/assets/documentation/docqa_q4-c5fb31744d32a5767aa4c3731dc8ada8464d3868a3953ff9b2c8638399bd5a5e.png" data-zooming-width="2560" data-zooming-height="1080" />
+</a></p>
+
+<p>Q5-review: Got the correct value 1.16 from the table. I think it is just lucky
+as we all know the text from table are actually jumbled together and is not a
+proper sentence like the Q3 dividend case.
+<a href="/assets/documentation/docqa_q5-3372fe14477e3990a62c83bddafa374be1900e611d5974fea34a52e53cd1bffb.png">
+  <img src="/assets/documentation/docqa_q5-3372fe14477e3990a62c83bddafa374be1900e611d5974fea34a52e53cd1bffb.png" alt="q5" class="zooming" data-rjs="/assets/documentation/docqa_q5-3372fe14477e3990a62c83bddafa374be1900e611d5974fea34a52e53cd1bffb.png" data-zooming-width="2560" data-zooming-height="1080" />
+</a></p>
+
+<p>Q6-review: The model answered it correctly and personally I like this
+question-answer pair the most as the model rephrased it instead of directly
+extracting or copying the paragraph from the page.
+<a href="/assets/documentation/docqa_q6-41fb785ed526c707fb336a6bf7caabad1231b2013bc4a4019f961bac9e60cc2a.png">
+  <img src="/assets/documentation/docqa_q6-41fb785ed526c707fb336a6bf7caabad1231b2013bc4a4019f961bac9e60cc2a.png" alt="q6" class="zooming" data-rjs="/assets/documentation/docqa_q6-41fb785ed526c707fb336a6bf7caabad1231b2013bc4a4019f961bac9e60cc2a.png" data-zooming-width="2560" data-zooming-height="1080" />
+</a></p>
+
+<p>Related:</p>
+<ul>
+  <li><a href="https://github.com/LxYuan0420/nlp/blob/main/notebooks/DocQA_with_PDFs_with_LangChain_and_OpenAI.ipynb">DocQA Notebook</a></li>
+  <li><a href="https://blog.nextideatech.com/chat-with-documents-using-langchain-gpt-4-python/">GPT-4 and LangChain: Building Python Chatbot with PDF Integration</a></li>
+  <li><a href="https://www.youtube.com/watch?v=DYOU_Z0hAwo">LangChain + OpenAI tutorial: Building a Q&amp;A system w/ own text data</a></li>
+</ul>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=DocQA:+Chat+with+PDFs+using+LangChain+and+OpenAI%20-%20https://lxyuan0420.github.io/posts/docqa-langchain-openai%20by%20@lxyuan" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://lxyuan0420.github.io/posts/docqa-langchain-openai" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Made with <a href="https://github.com/nielsenramon/chalk" rel="noreferrer noopener" target="_blank" title="Download Chalk">Chalk</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-3ee2c63bbac916f96cd7f90e83ab767f058ead1301444c9966f5156911c8be7f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

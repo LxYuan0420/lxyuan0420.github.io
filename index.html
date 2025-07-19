@@ -1,36 +1,980 @@
----
-layout: default
-title: "Knowledge dump"
-description: ""
----
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Lx | Knowledge dump</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<ul class="article-list">
-  {% for post in paginator.posts %}
-    <li class="article-list-item {% if site.scrollappear_enabled %}scrollappear{% endif %}">
-      <a href="{{ post.url | relative_url }}" title="{{ post.title }}">
+  <meta property="og:title" content="Knowledge dump">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lxyuan0420.github.io/">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Lx">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://lxyuan0420.github.io/">
+  <meta name="twitter:title" content="Knowledge dump">
+  <meta name="twitter:description" content="">
+
+  
+    <meta property="og:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://lxyuan0420.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Lx Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Lx">Lx</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/lxyuan" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/LxYuan0420" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/likxunyuan" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:lxyuan0420@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <ul class="article-list">
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/til-vim-tpope-dadbob" title="TIL: Exploring Databases in Vim with vim-dadbod">
         <h5>
-          {{ post.title }}
-          {% include svg-icon.html icon="arrow-right" %}
+          TIL: Exploring Databases in Vim with vim-dadbod
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
         </h5>
       </a>
       <p>
-        {% if post.description %}
-          {{ post.description }}  
-        {% else %}
-          {{ post.excerpt }}
-        {% endif %}
+        
+          Work with SQLite directly inside Vim with no context switching  
+        
       </p>
-      {% include article/info-footer.html post=post %}
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    July 19, 2025
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      2 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
     </li>
-  {% endfor %}
-  {% if paginator.total_pages > 1 %}
-    <li class="article-pagination {% if site.settings.scrollappear_enabled %}scrollappear{% endif %}">
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path }}" class="article-pagination-left">{% include svg-icon.html icon="arrow-left" %} Older posts</a>
-      {% endif %}
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="article-pagination-right">Newer posts {% include svg-icon.html icon="arrow-right" %}</a>
-      {% endif %}
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/files-to-prompt" title="TIL: Using `files-to-prompt` to Concatenate Files for LLMs">
+        <h5>
+          TIL: Using `files-to-prompt` to Concatenate Files for LLMs
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          Concatenate a directory full of files into a single prompt for use with LLMs  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    March 13, 2025
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      1 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
     </li>
-  {% endif %}
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/til-fix-ssl-verification-error-corporate" title="TIL: How to Handle SSL Verification Errors in Corporate Environments">
+        <h5>
+          TIL: How to Handle SSL Verification Errors in Corporate Environments
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          Handling SSL Verification Errors with Custom Certificates in Corporate Environments - ZScaler  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    November 13, 2024
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      2 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/vim-code-snippet" title="TIL: Setting Up Snippets in Vim with UltiSnips and vim-snippets">
+        <h5>
+          TIL: Setting Up Snippets in Vim with UltiSnips and vim-snippets
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          Exploring UltiSnips and vim-snippets  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    October 9, 2024
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/hf-llm-rs" title="TIL: Exploring hf-llm.rs and Rust Learnings">
+        <h5>
+          TIL: Exploring hf-llm.rs and Rust Learnings
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          Exploring hf-llm.rs and Learning Rust Along the Way  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    September 7, 2024
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      4 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/vllm-with-docker" title="Deploying vLLMs with Docker: A Guide to Fixing NVIDIA GPU Access">
+        <h5>
+          Deploying vLLMs with Docker: A Guide to Fixing NVIDIA GPU Access
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          A straightforward guide to resolving the 'unknown or invalid runtime name: nvidia' error for developers deploying VLLM using Docker.  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    April 1, 2024
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/til-python-batching-asyncio-semaphore" title="TIL: Asyncio for API Requests - Batching vs. Semaphore">
+        <h5>
+          TIL: Asyncio for API Requests - Batching vs. Semaphore
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describes the difference between manual batching vs Semaphore.  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    January 19, 2024
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      5 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/til-python-pep736-syntactic-sugar" title="Introducing PEP 736: Shorthand syntax for keyword arguments at invocation">
+        <h5>
+          Introducing PEP 736: Shorthand syntax for keyword arguments at invocation
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describes PEP 736, which proposes the introductions of syntactic sugar `f(x=)` as a replacement for `f(x=x)`  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    January 11, 2024
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      2 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/run-llama-llm-locally" title="llamafile: Run Llama LLM Locally">
+        <h5>
+          llamafile: Run Llama LLM Locally
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describe how to run a LLM on your own computing using llamafile  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    November 30, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      1 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/aws-multimodel-multicontainer" title="AWS Endpoint: Multi-model vs Multi-container">
+        <h5>
+          AWS Endpoint: Multi-model vs Multi-container
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article briefly explains the difference between multi-model and multi-container AWS endpoint deployment  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    August 18, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/fix-git-clone-gitlab-ssh" title="Fix: Overcomming SSH Connectivity Issues with GitLab">
+        <h5>
+          Fix: Overcomming SSH Connectivity Issues with GitLab
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describes how to fix the issue of being unable to git clone from GitLab  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    July 31, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      2 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/fix-failure-start-jupyter-lab" title="Fix: Failure to Start Jupyter Lab Notebook">
+        <h5>
+          Fix: Failure to Start Jupyter Lab Notebook
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describes how to fix the issue of being unable to start JupyterLab  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    July 30, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      2 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/inference-on-llama2-c" title="Running Llama2.c Inference: A Step-by-Step Guide">
+        <h5>
+          Running Llama2.c Inference: A Step-by-Step Guide
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describe how to run inference on Llama2.c  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    July 27, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      2 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/til-finetuning-llama2-autotrain-litgpt" title="TIL: Finetuning Llama-2 Model with Autotrain and Lit-GPT">
+        <h5>
+          TIL: Finetuning Llama-2 Model with Autotrain and Lit-GPT
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describe how to finetune the Llama-2 Model with two APIs  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    July 22, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/run-code-completion-llm-locally" title="Run Code Completion LLM Locally">
+        <h5>
+          Run Code Completion LLM Locally
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describe how to run an offline AI Coding Assistant LLM on your CPU  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    July 7, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/til-huggingface-evaluator" title="TIL: Evaluator from Huggingface">
+        <h5>
+          TIL: Evaluator from Huggingface
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describe the usage of evaluator from Huggingface  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    June 4, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/til-better-fstring-python312" title="TIL: Better F-string expression with python 3.12">
+        <h5>
+          TIL: Better F-string expression with python 3.12
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describe new updates of f-string on python3.12  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    June 3, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/docqa-langchain-openai" title="DocQA: Chat with PDFs using LangChain and OpenAI">
+        <h5>
+          DocQA: Chat with PDFs using LangChain and OpenAI
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article demostrate the query result of DocQA using LangChain and OpenAI  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    May 25, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      5 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/aws-rl-deepracer" title="My first reinforcement learning model on AWS">
+        <h5>
+          My first reinforcement learning model on AWS
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article demonstrates my experience of training a reinforcement learning (RL) model on AWS.  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    May 24, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/aws-textract-camelot-comparison" title="Table Extraction: Comparing Amazon Textract Service and Camelot">
+        <h5>
+          Table Extraction: Comparing Amazon Textract Service and Camelot
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article demostrate the output difference between AWS Textract and Camelot  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    May 23, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/spacy-textcat-refresher" title="How to train spaCy text classifier for multiclass or multilabel problem">
+        <h5>
+          How to train spaCy text classifier for multiclass or multilabel problem
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describes the steps of training spaCy text classifiers.  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    May 14, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      5 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/til-vim-pydocstring-plugin" title="TIL: vim-pydocstring">
+        <h5>
+          TIL: vim-pydocstring
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article introduce the vim plugin for auto generate python docstring.  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    May 6, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/chatgpt-prompt-engineering-for-developers" title="ChatGPT Prompt Engineering for Developers">
+        <h5>
+          ChatGPT Prompt Engineering for Developers
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describe some key takeaways concept that I learnt from the Coursera course.  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    May 2, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      6 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/finetune-distilgpt2-wikitext" title="Finetune DistilGPT2 Language Model on Wikitext Dataset">
+        <h5>
+          Finetune DistilGPT2 Language Model on Wikitext Dataset
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describe my experience of finetuning DistilGPT-2 Model on WikiText.  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    April 23, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      5 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+    <li class="article-list-item scrollappear">
+      <a href="/posts/til-vim-retab" title="TIL: retab command in vim">
+        <h5>
+          TIL: retab command in vim
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-right">
+  <use href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right" xlink:href="/assets/arrow-right-05feb9da52810d15348895a9a885c61803f4d2ae681b4fc442b285fef184dd2b.svg#icon-arrow-right"></use>
+</svg>
+
+        </h5>
+      </a>
+      <p>
+        
+          This article describe a new vim command I just discovered.  
+        
+      </p>
+      <div class="article-list-footer">
+  <span class="article-list-date">
+    April 4, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      1 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+    </li>
+  
+  
+    <li class="article-pagination ">
+      
+        <a href="/posts/page/2/" class="article-pagination-left"><svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-left">
+  <use href="/assets/arrow-left-3fbaf3633c5b37e961028aa1ab5a308806edebadcfc1f9f0b30bcf35c3a4fb8c.svg#icon-arrow-left" xlink:href="/assets/arrow-left-3fbaf3633c5b37e961028aa1ab5a308806edebadcfc1f9f0b30bcf35c3a4fb8c.svg#icon-arrow-left"></use>
+</svg>
+ Older posts</a>
+      
+      
+    </li>
+  
 </ul>
+
+        <footer class="footer scrollappear">
+  <p>
+    Made with <a href="https://github.com/nielsenramon/chalk" rel="noreferrer noopener" target="_blank" title="Download Chalk">Chalk</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-3ee2c63bbac916f96cd7f90e83ab767f058ead1301444c9966f5156911c8be7f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

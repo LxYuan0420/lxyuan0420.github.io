@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Lx | ChatGPT Prompt Engineering for Developers</title>
+  <meta name="description" content="This article describe some key takeaways concept that I learnt from the Coursera course.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="ChatGPT Prompt Engineering for Developers">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lxyuan0420.github.io/posts/chatgpt-prompt-engineering-for-developers">
+  <meta property="og:description" content="This article describe some key takeaways concept that I learnt from the Coursera course.">
+  <meta property="og:site_name" content="Lx">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://lxyuan0420.github.io/posts/chatgpt-prompt-engineering-for-developers">
+  <meta name="twitter:title" content="ChatGPT Prompt Engineering for Developers">
+  <meta name="twitter:description" content="This article describe some key takeaways concept that I learnt from the Coursera course.">
+
+  
+    <meta property="og:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://lxyuan0420.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Lx Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Lx">Lx</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/lxyuan" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/LxYuan0420" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/likxunyuan" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:lxyuan0420@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>ChatGPT Prompt Engineering for Developers</h1>
+            <p>This article describe some key takeaways concept that I learnt from the Coursera course.</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    May 2, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      6 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>This goal of this article is to summarise what I learnt from the Coursera
+course: <a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/">ChatGPT Prompt Engineering for
+Developers</a>
+as well to share few prompt engineering articles that I enjoy reading. Hope
+this is helpful for people who want to learn how to write good ChatGPT prompts
+and have some hands-on prompt engineering experience.</p>
+
+<p>From the course, we learn that ChatGPT is quite powerful and capable of
+performing a lot of NLP tasks such as inferring, summarisation, transforming
+(e.g., converting extracted information to JSON format) and others tasks. In
+order to achieve good performance and getting desired output format, it is
+important to follow these prompting principles: (1) Write clear and clear
+instructions (short != clear) and (2) Give the model time to “think” and (3)
+Use delimiters to clearly indicate distinct parts of the input. For the
+principle (2), what it means is actually to ask ChatGPT to think or explain the
+solution step by step.</p>
+
+<p>In the following section, we will see examples that demostrate different kind
+NLP tasks that ChatGPT is capable of and also to demostrate how to write good
+prompts based on the principles that we described above.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"""
+In a charming village, siblings Jack and Jill set out on \ 
+a quest to fetch water from a hilltop \ 
+well. As they climbed, singing joyfully, misfortune \ 
+struck—Jack tripped on a stone and tumbled \ 
+down the hill, with Jill following suit. \ 
+Though slightly battered, the pair returned home to \ 
+comforting embraces. Despite the mishap, \ 
+their adventurous spirits remained undimmed, and they \ 
+continued exploring with delight.
+"""</span>
+
+<span class="n">question</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"""
+Did Jack and Jill give up after the misfortune or did </span><span class="se">\
+</span><span class="s">they continue with their adventure?
+"""</span>
+
+<span class="n">prompt_1</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"""
+Perform the following actions:
+1 - Summarize the following text delimited by triple </span><span class="se">\
+</span><span class="s">backticks with 1 sentence.
+2 - Translate the summary into French.
+3 - List each name in the French summary.
+4 - Output a json object that contains the following </span><span class="se">\
+</span><span class="s">keys: french_summary, num_names.
+5 - Answer question delimited by triple quotes
+
+Separate your answers with line breaks.
+
+Text:
+```</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s">```
+
+Question:
+</span><span class="se">\"\"\"</span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="se">\"\"\"</span><span class="s">
+"""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">get_completion</span><span class="p">(</span><span class="n">prompt_1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Completion for prompt 1:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></code></pre></figure>
+
+<p>ChatGPT answered:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">Completion</span> <span class="k">for</span> <span class="n">prompt</span> <span class="mi">1</span><span class="p">:</span>
+<span class="mi">1</span> <span class="o">-</span> <span class="n">Siblings</span> <span class="n">Jack</span> <span class="ow">and</span> <span class="n">Jill</span> <span class="n">go</span> <span class="n">on</span> <span class="n">a</span> <span class="n">quest</span> <span class="n">to</span> <span class="n">fetch</span> <span class="n">water</span> <span class="k">from</span> <span class="n">a</span> <span class="n">hilltop</span> <span class="n">well</span><span class="p">,</span>
+<span class="n">but</span> <span class="n">after</span> <span class="n">Jack</span> <span class="n">trips</span> <span class="ow">and</span> <span class="n">tumbles</span> <span class="n">down</span> <span class="n">the</span> <span class="n">hill</span> <span class="k">with</span> <span class="n">Jill</span> <span class="n">following</span><span class="p">,</span> <span class="n">they</span> <span class="k">return</span>
+<span class="n">home</span> <span class="n">slightly</span> <span class="n">battered</span> <span class="n">but</span> <span class="k">with</span> <span class="n">their</span> <span class="n">adventurous</span> <span class="n">spirits</span> <span class="n">undimmed</span><span class="p">.</span>
+
+<span class="mi">2</span> <span class="o">-</span> <span class="n">Les</span> <span class="n">frères</span> <span class="n">et</span> <span class="n">sœurs</span> <span class="n">Jack</span> <span class="n">et</span> <span class="n">Jill</span> <span class="n">partent</span> <span class="n">en</span> <span class="n">quête</span> <span class="n">d</span><span class="s">'eau d'</span><span class="n">un</span> <span class="n">puits</span> <span class="n">au</span>
+<span class="n">sommet</span> <span class="n">d</span><span class="s">'une colline, mais après que Jack a trébuché et est tombé en bas de la
+colline avec Jill qui suit, ils rentrent chez eux légèrement meurtris mais avec
+leurs esprits aventureux intacts.
+
+3 - Jack, Jill
+
+4 - {"french_summary": "Les frères et sœurs Jack et Jill partent en quête d'</span><span class="n">eau</span>
+<span class="n">d</span><span class="s">'un puits au sommet d'</span><span class="n">une</span> <span class="n">colline</span><span class="p">,</span> <span class="n">mais</span> <span class="n">après</span> <span class="n">que</span> <span class="n">Jack</span> <span class="n">a</span> <span class="n">trébuché</span> <span class="n">et</span> <span class="n">est</span> <span class="n">tombé</span>
+<span class="n">en</span> <span class="n">bas</span> <span class="n">de</span> <span class="n">la</span> <span class="n">colline</span> <span class="n">avec</span> <span class="n">Jill</span> <span class="n">qui</span> <span class="n">suit</span><span class="p">,</span> <span class="n">ils</span> <span class="n">rentrent</span> <span class="n">chez</span> <span class="n">eux</span> <span class="n">légèrement</span>
+<span class="n">meurtris</span> <span class="n">mais</span> <span class="n">avec</span> <span class="n">leurs</span> <span class="n">esprits</span> <span class="n">aventureux</span> <span class="n">intacts</span><span class="p">.</span><span class="s">",
+     "</span><span class="n">num_names</span><span class="s">": 2
+   }
+
+5 - They continued exploring with delight.</span></code></pre></figure>
+
+<p>It was pretty impressive! Look at the example, we use delimiter to specify text
+to be summarised and question to be answered. We write clear instruction and
+describe the desired output format to ChatGPT. It performed 5 different tasks
+accurately: Summarisation, translation, named entity extraction, transforming
+and Question-answering.</p>
+
+<p>Let’s look at another example that demo the principle-(2): Think step by step.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">prompt</span> <span class="o">=</span> <span class="s">"""
+I went to the market and bought 10 apples. 
+I gave 2 apples to the neighbor and 2 to the repairman. 
+I then went and bought 5 more apples and ate 1. 
+How many apples did I remain with?
+
+Let's think step by step."""</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">get_completion</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="mf">1.</span> <span class="n">Bought</span> <span class="mi">10</span> <span class="n">apples</span><span class="p">.</span>
+<span class="mf">2.</span> <span class="n">Gave</span> <span class="mi">2</span> <span class="n">apples</span> <span class="n">to</span> <span class="n">the</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">remaining</span> <span class="k">with</span> <span class="mi">8</span> <span class="n">apples</span><span class="p">.</span>
+<span class="mf">3.</span> <span class="n">Gave</span> <span class="mi">2</span> <span class="n">more</span> <span class="n">apples</span> <span class="n">to</span> <span class="n">the</span> <span class="n">repairman</span><span class="p">,</span> <span class="n">remaining</span> <span class="k">with</span> <span class="mi">6</span> <span class="n">apples</span><span class="p">.</span>
+<span class="mf">4.</span> <span class="n">Bought</span> <span class="mi">5</span> <span class="n">more</span> <span class="n">apples</span><span class="p">,</span> <span class="n">now</span> <span class="n">having</span> <span class="mi">11</span> <span class="n">apples</span><span class="p">.</span>
+<span class="mf">5.</span> <span class="n">Ate</span> <span class="mi">1</span> <span class="n">apple</span><span class="p">,</span> <span class="n">remaining</span> <span class="k">with</span> <span class="mi">10</span> <span class="n">apples</span><span class="p">.</span>
+
+<span class="n">Therefore</span><span class="p">,</span> <span class="n">you</span> <span class="n">remained</span> <span class="k">with</span> <span class="mi">10</span> <span class="n">apples</span><span class="p">.</span></code></pre></figure>
+
+<p>Again, the answer and step-by-step explanation are correct. <img class="emoji" title=":thumbsup:" alt=":thumbsup:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png" height="20" width="20"></p>
+
+<p>Personally, I’m interested in using ChatGPT to perform information extraction
+on unstructure text data. Specifically, extracting key financial indicator
+values such as Earning-per-share (EPS), dividend, net-asset-value (NAV) from
+text. Let’s try them:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">text</span> <span class="o">=</span> <span class="s">"""
+Subject to the approval by the shareholders at the forthcoming Annual General Meeting, the directors have proposed an exempt
+(one-tier) final dividend of 3.10 cents per share (2020: exempt (one-tier) final dividend of 3.00 cents per share) amounting to an
+estimated amount of $46.6 million (2020: $45.1 million) in respect of the year ended 31 December 2021. This proposed dividend
+has not been included as a liability in the financial statements. The total dividends paid and proposed for the year, comprising the
+interim and final dividend in respect of the year ended 31 December 2021 approximates 70.2% (2020: 70.5%) of the Group’s net
+profit attributable to owners of the Company.
+"""</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"""
+Your task is to extract the following financial indicators </span><span class="se">\
+</span><span class="s">from the text delimited by backticks. In this case, we only </span><span class="se">\
+</span><span class="s">want financial indicators value from year 2021 and 2020.
+
+If the financial indicator information is available, extract them </span><span class="se">\
+</span><span class="s">and present them in a dataframe format with the following columns:
+
+&lt;type of indicator&gt; &lt;year&gt; &lt;value&gt;
+
+If the financial indicator information is not available, just answer </span><span class="se">\
+</span><span class="s">information not found.
+
+Financial indicator:
+- Basic earning per share (cent)
+- Diluted earning per share (cent)
+- Dividend
+- Number of share (NOS)
+- Net asset value (NAV)
+
+text: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s">
+"""</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">get_completion</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></code></pre></figure>
+
+<p>ChatGPT answered:</p>
+
+<hr>
+<table>
+  <tr>
+    <th>Type of Indicator</th>
+    <th>Year</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Diluted earning per share (cent)</td>
+    <td>2021</td>
+    <td>Information not found</td>
+  </tr>
+  <tr>
+    <td>Basic earning per share (cent)</td>
+    <td>2021</td>
+    <td>Information not found</td>
+  </tr>
+  <tr>
+    <td>Dividend</td>
+    <td>2021</td>
+    <td>3.10 cents per share</td>
+  </tr>
+  <tr>
+    <td>Number of share (NOS)</td>
+    <td>2021</td>
+    <td>Information not found</td>
+  </tr>
+  <tr>
+    <td>Net asset value (NAV)</td>
+    <td>2021</td>
+    <td>Information not found</td>
+  </tr>
+  <tr>
+    <td>Diluted earning per share (cent)</td>
+    <td>2020</td>
+    <td>Information not found</td>
+  </tr>
+  <tr>
+    <td>Basic earning per share (cent)</td>
+    <td>2020</td>
+    <td>Information not found</td>
+  </tr>
+  <tr>
+    <td>Dividend</td>
+    <td>2020</td>
+    <td>3.00 cents per share</td>
+  </tr>
+  <tr>
+    <td>Number of share (NOS)</td>
+    <td>2020</td>
+    <td>Information not found</td>
+  </tr>
+  <tr>
+    <td>Net asset value (NAV)</td>
+    <td>2020</td>
+    <td>Information not found</td>
+  </tr>
+</table>
+<hr>
+
+<p>The results are all correct! The provided text is all about dividend and no
+additional information for other indicators.</p>
+
+<p>That’s it. I recommend everyone to try the free prompt engineering course on
+Coursera to get some hands-on experience and play with the notebooks. You don’t
+even have to generate your own openai api key and setting up the env. If you
+wish to learn more about prompt engineering, please check out the following
+articles or resources:</p>
+<ul>
+  <li><a href="https://github.com/dair-ai/Prompt-Engineering-Guide">dair-ai/Prompt-Engineering-Guide</a></li>
+  <li><a href="https://mitchellh.com/writing/prompt-engineering-vs-blind-prompting#user-content-fnref-4">Prompt Engineering vs. Blind Prompting</a></li>
+  <li><a href="https://www.promptingguide.ai/introduction">Prompt Engineering Guide</a></li>
+  <li><a href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/">Prompt Engineering</a></li>
+</ul>
+
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=ChatGPT+Prompt+Engineering+for+Developers%20-%20https://lxyuan0420.github.io/posts/chatgpt-prompt-engineering-for-developers%20by%20@lxyuan" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"></path></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://lxyuan0420.github.io/posts/chatgpt-prompt-engineering-for-developers" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"></path></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Made with <a href="https://github.com/nielsenramon/chalk" rel="noreferrer noopener" target="_blank" title="Download Chalk">Chalk</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-3ee2c63bbac916f96cd7f90e83ab767f058ead1301444c9966f5156911c8be7f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

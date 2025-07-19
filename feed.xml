@@ -1,20 +1,90 @@
----
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom" xmlns:dc="https://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ site.name | xml_escape }}</title>
-    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
-    <link>{{ site.url }}</link>
-    <atom:link href="{{ page.path | absolute_url }}" rel="self" type="application/rss+xml" />
-    {% for post in site.posts limit:10 %}
+    <title>Lx</title>
+    <description></description>
+    <link>https://lxyuan0420.github.io</link>
+    <atom:link href="https://lxyuan0420.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.description | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | absolute_url }}</link>
-        <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+        <title>TIL: Exploring Databases in Vim with vim-dadbod</title>
+        <description>Work with SQLite directly inside Vim with no context switching</description>
+        <pubDate>Sat, 19 Jul 2025 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/til-vim-tpope-dadbob</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/til-vim-tpope-dadbob</guid>
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>TIL: Using `files-to-prompt` to Concatenate Files for LLMs</title>
+        <description>Concatenate a directory full of files into a single prompt for use with LLMs</description>
+        <pubDate>Thu, 13 Mar 2025 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/files-to-prompt</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/files-to-prompt</guid>
+      </item>
+    
+      <item>
+        <title>TIL: How to Handle SSL Verification Errors in Corporate Environments</title>
+        <description>Handling SSL Verification Errors with Custom Certificates in Corporate Environments - ZScaler</description>
+        <pubDate>Wed, 13 Nov 2024 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/til-fix-ssl-verification-error-corporate</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/til-fix-ssl-verification-error-corporate</guid>
+      </item>
+    
+      <item>
+        <title>TIL: Setting Up Snippets in Vim with UltiSnips and vim-snippets</title>
+        <description>Exploring UltiSnips and vim-snippets</description>
+        <pubDate>Wed, 09 Oct 2024 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/vim-code-snippet</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/vim-code-snippet</guid>
+      </item>
+    
+      <item>
+        <title>TIL: Exploring hf-llm.rs and Rust Learnings</title>
+        <description>Exploring hf-llm.rs and Learning Rust Along the Way</description>
+        <pubDate>Sat, 07 Sep 2024 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/hf-llm-rs</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/hf-llm-rs</guid>
+      </item>
+    
+      <item>
+        <title>Deploying vLLMs with Docker: A Guide to Fixing NVIDIA GPU Access</title>
+        <description>A straightforward guide to resolving the 'unknown or invalid runtime name: nvidia' error for developers deploying VLLM using Docker.</description>
+        <pubDate>Mon, 01 Apr 2024 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/vllm-with-docker</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/vllm-with-docker</guid>
+      </item>
+    
+      <item>
+        <title>TIL: Asyncio for API Requests - Batching vs. Semaphore</title>
+        <description>This article describes the difference between manual batching vs Semaphore.</description>
+        <pubDate>Fri, 19 Jan 2024 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/til-python-batching-asyncio-semaphore</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/til-python-batching-asyncio-semaphore</guid>
+      </item>
+    
+      <item>
+        <title>Introducing PEP 736: Shorthand syntax for keyword arguments at invocation</title>
+        <description>This article describes PEP 736, which proposes the introductions of syntactic sugar `f(x=)` as a replacement for `f(x=x)`</description>
+        <pubDate>Thu, 11 Jan 2024 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/til-python-pep736-syntactic-sugar</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/til-python-pep736-syntactic-sugar</guid>
+      </item>
+    
+      <item>
+        <title>llamafile: Run Llama LLM Locally</title>
+        <description>This article describe how to run a LLM on your own computing using llamafile</description>
+        <pubDate>Thu, 30 Nov 2023 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/run-llama-llm-locally</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/run-llama-llm-locally</guid>
+      </item>
+    
+      <item>
+        <title>AWS Endpoint: Multi-model vs Multi-container</title>
+        <description>This article briefly explains the difference between multi-model and multi-container AWS endpoint deployment</description>
+        <pubDate>Fri, 18 Aug 2023 00:00:00 +0800</pubDate>
+        <link>https://lxyuan0420.github.io/posts/aws-multimodel-multicontainer</link>
+        <guid isPermaLink="true">https://lxyuan0420.github.io/posts/aws-multimodel-multicontainer</guid>
+      </item>
+    
   </channel>
 </rss>

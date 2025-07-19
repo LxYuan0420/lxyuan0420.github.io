@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Lx | Run Code Completion LLM Locally</title>
+  <meta name="description" content="This article describe how to run an offline AI Coding Assistant LLM on your CPU">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Run Code Completion LLM Locally">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lxyuan0420.github.io/posts/run-code-completion-llm-locally">
+  <meta property="og:description" content="This article describe how to run an offline AI Coding Assistant LLM on your CPU">
+  <meta property="og:site_name" content="Lx">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://lxyuan0420.github.io/posts/run-code-completion-llm-locally">
+  <meta name="twitter:title" content="Run Code Completion LLM Locally">
+  <meta name="twitter:description" content="This article describe how to run an offline AI Coding Assistant LLM on your CPU">
+
+  
+    <meta property="og:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+    <meta name="twitter:image" content="https://lxyuan0420.github.io/assets/og-image-ee46bbc61b334e821e81534b1fd43f3fee6f020ec174b3c2114445695fd48c01.jpg">
+  
+
+  <link href="https://lxyuan0420.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Lx Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+      <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Lx">Lx</a>
+  <ul class="header-links">
+    
+    
+      <li>
+        <a href="https://twitter.com/lxyuan" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/LxYuan0420" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/likxunyuan" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:lxyuan0420@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Run Code Completion LLM Locally</h1>
+            <p>This article describe how to run an offline AI Coding Assistant LLM on your CPU</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    July 7, 2023
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      3 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p>I have been occupied with work for the past month, and I finally have some time to delve into new things. I’m not sure about you all, but I increasingly find myself relying on ChatGPT for coding tasks. It’s been useful for simple tasks like creating a Python regex to extract US phone numbers from a string, as well as more complex tasks like writing a FastAPI script that utilizes the Hugging Face pipeline for text summarization. So far, it has been working well for me. However, it’s important to remember that everything we ask or write to ChatGPT is captured by OpenAI, so we should refrain from sharing any company intellectual property, such as code or config files, with them, regardless of how unrelated or trivial it may seem.</p>
+
+<p>In this post, we will explore how to run <a href="https://huggingface.co/teknium/Replit-v2-CodeInstruct-3B">Replit-v2-CodeInstruct-3B</a>, which is a Code Completion LLM, on your local CPU. This model can serve as a coding assistant for work or learning, helping to enhance your productivity. However, please note that when running inference on the Replit CodeInstruct model using a ggml quantized model on a CPU, the performance may not be optimal. The advantages of this model include decent speed and privacy, while the downside is its subpar performance. For more serious work, I still recommend using ChatGPT.</p>
+
+<h3 id="setup-environment">Setup environment</h3>
+<p>First, we need to set up the environment and download the model for inference. You can follow the provided commands:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>git clone https://github.com/abacaj/replit-3B-inference.git
+<span class="nv">$ </span>python <span class="nt">-m</span> venv <span class="nb">env</span> <span class="o">&amp;&amp;</span> <span class="nb">source env</span>/bin/activate
+<span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<span class="nv">$ </span>python download_model.py
+<span class="nv">$ </span>python inference.py</code></pre></figure>
+
+<p>Now we are ready. Let start with one simple and one difficult test cases and compare this model and chatgpt side by side.</p>
+
+<h3 id="simple-test-case-to-create-and-reverse-python-list">Simple test case: To create and reverse python list</h3>
+
+<p>Both models are capable of creating a new Python list, but Replit failed to reverse the list in a Pythonic way and assign it to a new variable. When I requested the output, it started giving me nonsensical results :(
+<a href="/assets/documentation/replit_chatgpi_reverse_list-822db9e0af3d1e51629092f0c2f0c341a0a4bdfdbfdabcd4d8c0a238f91d88e0.png">
+  <img src="/assets/documentation/replit_chatgpi_reverse_list-822db9e0af3d1e51629092f0c2f0c341a0a4bdfdbfdabcd4d8c0a238f91d88e0.png" alt="Comparison between replit and ChatGPT on python list reverse" class="zooming" data-rjs="/assets/documentation/replit_chatgpi_reverse_list-822db9e0af3d1e51629092f0c2f0c341a0a4bdfdbfdabcd4d8c0a238f91d88e0.png" data-zooming-width="2560" data-zooming-height="1080" />
+</a></p>
+
+<h4 id="difficult-test-case-to-create-fastapi-script-for-summarisation">Difficult test case: To create FastAPI script for summarisation</h4>
+
+<p>This is a slightly more challenging case. It seems like Replit only completed about 20% of the code, whereas ChatGPT provided almost complete results, including the usage commands.</p>
+
+<p><a href="/assets/documentation/replit_chatgpt_fastapi-049d829b97471bc4ac4cefeb4b45903cc2c2223af190cd1c002c22426643ad1b.png">
+  <img src="/assets/documentation/replit_chatgpt_fastapi-049d829b97471bc4ac4cefeb4b45903cc2c2223af190cd1c002c22426643ad1b.png" alt="Comparison between replit and ChatGPT on FastAPI script" class="zooming" data-rjs="/assets/documentation/replit_chatgpt_fastapi-049d829b97471bc4ac4cefeb4b45903cc2c2223af190cd1c002c22426643ad1b.png" data-zooming-width="2560" data-zooming-height="1080" />
+</a></p>
+
+<p>Of course, it is not an apple to apple comparison. If you wish to explore more on the Replit model, feel free to adjust the temperature, top_k, top_p configuration:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">(</span><span class="nb">env</span><span class="o">)</span> ➜  replit-3B-inference git:<span class="o">(</span>main<span class="o">)</span> ✗ <span class="nb">tail</span> <span class="nt">-25</span> inference.py
+    <span class="o">)</span>
+
+    generation_config <span class="o">=</span> GenerationConfig<span class="o">(</span>
+        <span class="nv">temperature</span><span class="o">=</span>0.2,
+        <span class="nv">top_k</span><span class="o">=</span>50,
+        <span class="nv">top_p</span><span class="o">=</span>0.9,
+        <span class="nv">repetition_penalty</span><span class="o">=</span>1.0,
+        <span class="nv">max_new_tokens</span><span class="o">=</span>512,  <span class="c"># adjust as needed</span>
+        <span class="nv">seed</span><span class="o">=</span>42,
+        <span class="nv">reset</span><span class="o">=</span>True,  <span class="c"># reset history (cache)</span>
+        <span class="nv">stream</span><span class="o">=</span>True,  <span class="c"># streaming per word/token</span>
+        <span class="nv">threads</span><span class="o">=</span>int<span class="o">(</span>os.cpu_count<span class="o">()</span> / 6<span class="o">)</span>,  <span class="c"># adjust for your CPU</span>
+        <span class="nv">stop</span><span class="o">=[</span><span class="s2">"&lt;|endoftext|&gt;"</span><span class="o">]</span>,
+    <span class="o">)</span>
+
+    user_prefix <span class="o">=</span> <span class="s2">"[user]: "</span>
+    assistant_prefix <span class="o">=</span> f<span class="s2">"[assistant]:"</span>
+
+    <span class="k">while </span>True:
+        user_prompt <span class="o">=</span> input<span class="o">(</span>user_prefix<span class="o">)</span>
+        generator <span class="o">=</span> generate<span class="o">(</span>llm, generation_config, user_prompt.strip<span class="o">())</span>
+        print<span class="o">(</span>assistant_prefix, <span class="nv">end</span><span class="o">=</span><span class="s2">" "</span>, <span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+        <span class="k">for </span>word <span class="k">in </span>generator:
+            print<span class="o">(</span>word, <span class="nv">end</span><span class="o">=</span><span class="s2">""</span>, <span class="nv">flush</span><span class="o">=</span>True<span class="o">)</span>
+        print<span class="o">(</span><span class="s2">""</span><span class="o">)</span></code></pre></figure>
+
+<p>Related:</p>
+<ul>
+  <li><a href="https://github.com/abacaj/replit-3B-inference">abacaj/replit-3B-inference</a></li>
+  <li><a href="https://huggingface.co/teknium/Replit-v2-CodeInstruct-3B">teknium/Replit-v2-CodeInstruct-3B</a></li>
+</ul>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Run+Code+Completion+LLM+Locally%20-%20https://lxyuan0420.github.io/posts/run-code-completion-llm-locally%20by%20@lxyuan" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://lxyuan0420.github.io/posts/run-code-completion-llm-locally" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Made with <a href="https://github.com/nielsenramon/chalk" rel="noreferrer noopener" target="_blank" title="Download Chalk">Chalk</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-3ee2c63bbac916f96cd7f90e83ab767f058ead1301444c9966f5156911c8be7f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

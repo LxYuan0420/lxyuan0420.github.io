@@ -51,7 +51,7 @@ row-header column.
 ----
 
 ###### Sample Camelot code
-{% highlight python %}
+```python
 # installation 
 !pip install "camelot-py[base]"
 
@@ -88,7 +88,7 @@ table = camelot.read_pdf(
 )
 # save as csv file
 table[0].to_csv("multi.csv")
-{% endhighlight %}
+```
 
 
 Related:

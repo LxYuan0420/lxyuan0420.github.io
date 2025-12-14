@@ -16,15 +16,15 @@ terminal.
 
 I tested it with a local SQLite file. To connect, just run:
 
-{% highlight bash %}
+```bash
 :DB sqlite:///Users/exampleuser/db/dev.sqlite3
-{% endhighlight %}
+```
 
 That opens the connection. Then you can browse tables using:
 
-{% highlight bash %}
+```bash
 :DBUI
-{% endhighlight %}
+```
 
 It gives you a sidebar with tables and schemas. Use `:DBUIClose` to exit when you're done.
 
@@ -32,25 +32,25 @@ It gives you a sidebar with tables and schemas. Use `:DBUIClose` to exit when yo
 
 What I like most is pressing `S` on a table to open a dedicated query split. You can write SQL there and run it by visually selecting the query and pressing:
 
-{% highlight bash %}
+```bash
 \S  " leader + S
-{% endhighlight %}
+```
 
 The result shows up automatically in a split at the bottom. No need to leave the editor or context switch.
 
 Example query:
 
-{% highlight bash %}
+```bash
 SELECT * FROM users WHERE name LIKE '%Alex%' ORDER BY id DESC LIMIT 5;
-{% endhighlight %}
+```
 
 ### Bonus: SQL from Comments
 
 Sometimes I jot down a messy comment like:
 
-{% highlight bash %}
+```bash
 select all columns from users table where name like %Alex% and order by id desc limit 5
-{% endhighlight %}
+```
 
 Then I visually select it and ask an LLM to rewrite it into valid SQL. It gives back the correct command. I paste it, run it, and move on.
 

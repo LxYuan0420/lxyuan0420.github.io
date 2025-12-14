@@ -23,7 +23,7 @@ further assess the car's performance, we can evaluate and monitor its behavior
 through virtual evaluation videos after each training session.
 
 Below is the python-based reward function I used:
-{% highlight python %}
+```python
 import math
 def reward_function(params):
 
@@ -72,7 +72,7 @@ def reward_function(params):
     # - - - - -
     
     return speed_reward + heading_reward + steering_reward
-{% endhighlight %}
+```
 
 You can see how the car performs during the evaluation phase:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dQ2NinHaC5c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

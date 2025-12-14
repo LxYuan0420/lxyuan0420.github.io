@@ -25,7 +25,7 @@ The key turning point was introducing a delay in the Semaphore method. This smal
 
 
 #### Below is the test script:
-{% highlight python %}
+```python
 import asyncio
 import time
 from typing import Dict, List, Optional
@@ -119,4 +119,4 @@ print(f"DEBUG: {len(non_none_semaphore_results) = }")
 >>> DEBUG: len(non_none_batching_results) = 100
 >>> DEBUG: len(non_none_semaphore_results) = 45
 """
-{% endhighlight %}
+```

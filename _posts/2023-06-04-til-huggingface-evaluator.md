@@ -12,7 +12,7 @@ currently have, along with its workaround.
 The following code is to load the `banking77` dataset and one of the models
 that I fine-tuned and pushed to HF mode hub:
 
-{% highlight python %}
+```python
 !pip install -U transformers datasets evaluate
 
 import evaluate
@@ -47,19 +47,19 @@ results = task_evaluator.compute(
  'samples_per_second': 102.42711720607363,
  'latency_in_seconds': 0.009763039586363589}
 
-{% endhighlight %}
+```
 
 As mentioned in the code snippet that the development of `Evaluator` feature is
 currently on-hold so it doesn't support precision/recall/f1 metrics for
 multiclass problem. If you uncomment them and run the code, you will see error
 message like:
-{% highlight python %}
+```python
 ValueError: Target is multiclass but average='binary'. Please choose another average setting, one of [None, 'micro', 'macro', 'weighted'].
-{% endhighlight %}
+```
 
 The workaround is simply switch to sklearn classification report function, as follows:
 
-{% highlight python %}
+```python
 from transformers import pipeline
 from sklearn.metrics import classification_report
 
@@ -94,7 +94,7 @@ Classification Report:
                                         accuracy                         0.9244      3080
                                        macro avg     0.9282    0.9244    0.9243      3080
                                     weighted avg     0.9282    0.9244    0.9243      3080
-{% endhighlight %}
+```
 
 That's it!
 

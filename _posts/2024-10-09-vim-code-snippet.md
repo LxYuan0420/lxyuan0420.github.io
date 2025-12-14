@@ -16,12 +16,12 @@ Today, I learned setting up snippets for Vim using [UltiSnips](https://github.co
 First, I installed both plugins using **Vim-Plug**. If you don’t have Vim-Plug set up, add the following to your `.vimrc`:
 
 
-{% highlight bash %}
+```bash
 call plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 call plug#end()
-{% endhighlight %}
+```
 
 After adding the plugins, run `:PlugInstall` in Vim to install them.
 
@@ -30,11 +30,11 @@ After adding the plugins, run `:PlugInstall` in Vim to install them.
 I configured UltiSnips to use convenient keybindings for expanding and navigating snippets. Here’s what I added to my `.vimrc`:
 
 
-{% highlight bash %}
+```bash
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-{% endhighlight %}
+```
 
 - `<tab>`: Expands the snippet.
 - `<c-b>`: Jumps forward to the next placeholder in the snippet.
@@ -44,7 +44,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 Next, I created a custom snippet for my C++ workflow. I added it in the file `~/.vim/UltiSnips/cpp.snippets`:
 
-{% highlight bash %}
+```bash
 snippet main
 #include <iostream>
 
@@ -53,7 +53,7 @@ int main()
     ${1:return 0;}
 }
 endsnippet
-{% endhighlight %}
+```
 
 
 - The **`${1:return 0;}`** part sets a **placeholder** at the cursor’s initial position when the snippet expands.
@@ -63,14 +63,14 @@ endsnippet
 
 When I type `main` and press `<tab>` in a C++ file, it expands to:
 
-{% highlight cpp %}
+```cpp
 #include <iostream>
 
 int main()
 {
     return 0;
 }
-{% endhighlight %}
+```
 
 The cursor lands on the placeholder (`return 0;`), letting me modify the code quickly.
 
@@ -82,9 +82,9 @@ Note: You can find these snippets in ~/.vim/plugged/vim-snippets/snippets/. You 
 ### 6. Reload Vim and Test Your Snippet
 Reload your Vim configuration or restart Vim to ensure everything is set up:
 
-{% highlight bash %}
+```bash
 source ~/.vimrc
-{% endhighlight %}
+```
 
 Now, open a new .cpp file, type main, and hit <tab> to expand your snippet!
 

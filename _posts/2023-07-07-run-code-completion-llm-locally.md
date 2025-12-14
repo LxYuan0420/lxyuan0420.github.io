@@ -11,13 +11,13 @@ In this post, we will explore how to run [Replit-v2-CodeInstruct-3B](https://hug
 ### Setup environment 
 First, we need to set up the environment and download the model for inference. You can follow the provided commands:
 
-{% highlight bash %}
+```bash
 $ git clone https://github.com/abacaj/replit-3B-inference.git
 $ python -m venv env && source env/bin/activate
 $ pip install -r requirements.txt
 $ python download_model.py
 $ python inference.py
-{% endhighlight %}
+```
 
 Now we are ready. Let start with one simple and one difficult test cases and compare this model and chatgpt side by side.
 
@@ -36,7 +36,7 @@ This is a slightly more challenging case. It seems like Replit only completed ab
 
 Of course, it is not an apple to apple comparison. If you wish to explore more on the Replit model, feel free to adjust the temperature, top_k, top_p configuration:
 
-{% highlight bash %}
+```bash
 (env) ➜  replit-3B-inference git:(main) ✗ tail -25 inference.py
     )
 
@@ -63,7 +63,7 @@ Of course, it is not an apple to apple comparison. If you wish to explore more o
         for word in generator:
             print(word, end="", flush=True)
         print("")
-{% endhighlight %}
+```
 
 Related:
 - [abacaj/replit-3B-inference](https://github.com/abacaj/replit-3B-inference)

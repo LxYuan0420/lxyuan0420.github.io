@@ -32,7 +32,7 @@ while others are just titles or empty lines. The first step is to tokenize them
 and then split them in small chunks of a certain `block_size` using the following
 code:
 
-{% highlight python %}
+```python
 from transformers import AutoTokenizer
     
 
@@ -67,13 +67,13 @@ lm_datasets = tokenized_datasets.map(
     batch_size=1000,
     num_proc=4,
 )
-{% endhighlight %}
+```
 
 We can refer to the dummy example below to understand how the `group_texts()`
 function works. The idea is to concatenate input_ids of all examples (i.e, make it a long list of int) together
 and split them into small chunks (i.e., make it a list of list of int).
 
-{% highlight python %}
+```python
 examples = {
     "input_ids": [
         [1,1,1],
@@ -96,7 +96,7 @@ results = group_texts(examples)
 
 {'input_ids': [[1, 1], [1, 2], [2, 2], [4, 4]],
  'labels': [[1, 1], [1, 2], [2, 2], [4, 4]]} 
-{% endhighlight %}
+```
 
 The remainder `4` is excluded at the end. You may also notice that we duplicate the input_ids for the labels. This is because HF model class will automatically apply the shifting to right, so we don't need to any thing manually. One can refer to the official pytorch code implemention to learn more about [that](https://github.com/huggingface/transformers/blob/820c46a707ddd033975bc3b0549eea200e64c7da/src/transformers/models/gpt2/modeling_gpt2.py#L1068).
 
@@ -105,7 +105,7 @@ The remainder `4` is excluded at the end. You may also notice that we duplicate 
 
 For the model part, we just need to load the pretrained DistilGPT-2 model and define training arguments. 
 
-{% highlight python %}
+```python
 from transformers import AutoModelForCausalLM
 from transformers import Trainer, TrainingArguments
 
@@ -123,21 +123,21 @@ training_args = TrainingArguments(
     push_to_hub=True,
 )
 
-{% endhighlight %}
+```
 
 As we wanted to push to the final trained model to HF model hub, we set the argument `push_to_hub=True` and set the `output_dir` argument (i.e, the first one positional argument in TrainingArguments()). If things went well, we could download and try our model using namespace:
 
-{% highlight python %}
+```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained("lxyuan/distilgpt2-finetuned-wikitext2")
 model = AutoModelForCausalLM.from_pretrained("lxyuan/distilgpt2-finetuned-wikitext2")
-{% endhighlight %}
+```
 
 ### Trainer
 
 We then can start training them as usual. We just need to run 2 more commands to push the model and tokenizer to our repo: `distilgpt2-finetuned-wikitext2`.
 
-{% highlight python %}
+```python
 trainer = Trainer(
     model=model,
     args=training_args,
@@ -150,13 +150,13 @@ trainer.train()
 trainer.push_to_hub()
 tokenizer.push_to_hub("distilgpt2-finetuned-wikitext2")
 
-{% endhighlight %}
+```
 
 ### Inferecing example
 
 One of the easiet way to try the model is to use `pipeline()`, as follows:
 
-{% highlight python %}
+```python
 from transformers import pipeline
 
 generator = pipeline(model="lxyuan/distilgpt2-finetuned-wikitext2")
@@ -164,7 +164,7 @@ generator("Lion King is", pad_token_id=generator.tokenizer.eos_token_id, max_new
 >>>
 [{'generated_text': 'Lion King is the only king of the two lands currently controlled by the emperor. King Henry II has since ruled through the Middle Ages, most recently after his death. Queen Edward I of England was assassinated in 1765. Edward II died in 1666. \n'},
  {'generated_text': 'Lion King is a playable version of the main story arc for The New Adventures of Magic. An updated version features two characters on a different character : the Dark Knight ( Shadow Knight ) and the Knights of the Temple of the Shadow ( Z @-@ Knight ).'}]
-{% endhighlight %}
+```
 
 Extra: 
 - Try model demo [here](https://huggingface.co/lxyuan/distilgpt2-finetuned-wikitext2)

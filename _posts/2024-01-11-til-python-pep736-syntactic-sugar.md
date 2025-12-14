@@ -16,7 +16,7 @@ The proposal suggests a shortcut for function calls with keyword arguments. Typi
 
 Here's a practical example:
 
-{% highlight python %}
+```python
 def greet(name, age):
     print(f"Hello, {name}! You are {age} years old.")
 
@@ -28,7 +28,7 @@ greet(name=name, age=age)
 
 # With PEP 736:
 greet(name=, age=)
-{% endhighlight %}
+```
 
 ### Why It's a Game-Changer
 

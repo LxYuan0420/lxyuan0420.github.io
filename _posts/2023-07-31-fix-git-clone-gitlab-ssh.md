@@ -6,7 +6,7 @@ description: "This article describes how to fix the issue of being unable to git
 
 So, I recently faced a hiccup while trying to clone a company project from GitLab. Here's the error message my terminal threw:
 
-{% highlight bash %}
+```bash
 root@lx:~/work# git clone git@gitlab.com:<project-name>/<repo-name>.git
 Cloning into <repo>...
 socket: Address family not supported by protocol
@@ -15,20 +15,20 @@ fatal: Could not read from remote repository.
 
 Please make sure you have the correct access rights
 and the repository exists.
-{% endhighlight %}
+```
 
 For a bit of context, I was SSH'd into a cloud machine when I tried to git clone a repo from GitLab. The issue likely arose because port 22, the default port for SSH, was blocked. Many cloud service providers block port 22 as a security measure. It's a common practice to prevent unauthorized SSH traffic, which can mitigate risks like brute force login attempts.
 
 But here's the silver lining: I discovered that GitLab.com runs an alternate SSH server on port 443, which is typically open since it's used for HTTPS traffic. If you ever encounter this issue, here's a quick solution. Adjust your ~/.ssh/config to modify your connection settings to GitLab.com:
 
-{% highlight bash %}
+```bash
 Host gitlab.com
   Hostname altssh.gitlab.com
   User git
   Port 443
   PreferredAuthentications publickey
   IdentityFile ~/.ssh/id_ed25519
-{% endhighlight %}
+```
 
 And there you go! Problem solved. I hope this note assists someone facing a similar issue. Happy coding! 🚀
 

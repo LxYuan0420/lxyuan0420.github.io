@@ -41,7 +41,7 @@ committed crime with respect to the imprisonment term. We approximate crime
 severity by the length of imprisonment term, split in 6 classes (0, <=12,
 <=36, <=60, <=120, >120 months).
 
-{% highlight python %}
+```python
 from collections import Counter
 from datasets import load_dataset
 
@@ -67,12 +67,12 @@ c = Counter(dataset["train"]["label"])
     4: "<=120",
     5: ">120",
 }
-{% endhighlight %}
+```
 
 
 ##### 2. Dataset Conversion
 
-{% highlight python %}
+```python
 from spacy.tokens import DocBin
 from tqdm import tqdm
 
@@ -102,14 +102,14 @@ def convert(data, output):
 convert(dataset["train"], "./train.spacy")
 convert(dataset["validation"], "./dev.spacy")
 convert(dataset["test"], "./test.spacy")
-{% endhighlight %}
+```
 
 Note that, for each sample we have to specify 1/0 for all possible labels in
 each `doc.cat` attribute. For instance, you are doing sentiment analysis and
 you have 3 possible labels: [positive, neutral, negative]. A positive sentiment
 article should be prepared like this:
 
-{% highlight python %}
+```python
 
 labels = ["positive", "neutral", "negative"]
 
@@ -122,41 +122,41 @@ for label in labels:
 doc.cat
 >>> {"positive": 1, "neutral":0, "negative": 0}
 
-{% endhighlight %}
+```
 
 ##### 3. Generate Config
 
 We use spacy init command to generate a default config file to train a
 multiclass ensemble text classifer focusing on accuracy.
 
-{% highlight bash %}
+```bash
 python -m spacy init config chinese_textcat.cfg \
     --lang zh \
     --pipeline textcat \ # specify textcat_multilabel for multilabel
     --optimize accuracy \ # accuracy: use ensemble (cnn+bow); effiency: use bow
     --gpu
-{% endhighlight %}
+```
 
 ##### 4. Train
-{% highlight bash %}
+```bash
 python -m spacy train chinese_textcat.cfg \
     --paths.train ./train.spacy \
     --paths.dev ./dev.spacy \
     --output chinse_legal_textcat # saved model name
-{% endhighlight %}
+```
 
 
 ##### 5. Evaluate
-{% highlight bash %}
+```bash
 python -m spacy evaluate \
     ./chinse_legal_textcat/model-best/ \ # path to saved model
     ./test.spacy \ #path to test set
     --gpu-id 0
-{% endhighlight %}
+```
 
 We can also load the saved model and predict on unseen sample.
 
-{% highlight python %}
+```python
 # random sample from train split
 # label: 1 (<=12)
 text = (
@@ -185,7 +185,7 @@ print(doc.cats,  "-",  text)
 辨认笔录，鉴定意见，扣押、发还清单，照片，视听资料，常住人口基本信息，被告人陈向明的供述及其前科劣迹材料等证据予以证实，
 足以认定。
 
-{% endhighlight %}
+```
 
 That's it. Check out the following notebooks for more information:
 - [Toxic Comment Multilabel Classification using spaCy v3 TextCategorizer](https://github.com/LxYuan0420/nlp/blob/main/notebooks/Toxic_Comment_Multilabel_Classification_using_spaCy_v3_TextCategorizer.ipynb)

@@ -16,7 +16,7 @@ Hugging Face's autotrain-advanced is a powerful tool that simplifies the
 process of fine-tuning models. Here's a step-by-step guide on how to use it
 with the Llama-2 model:
 
-{% highlight python %}
+```python
 # install the autotrain-advanced package and update PyTorch
 !pip install -U autotrain-advanced --quiet
 !autotrain setup --update-torch
@@ -37,7 +37,7 @@ with the Llama-2 model:
     --save_total_limit 2 \
     --repo_id lxyuan/llama-2-7b-alpaca
 
-{% endhighlight %}
+```
 
 This command will fine-tune the Llama-2 model on the Alpaca dataset from Tatsu
 Lab, using a learning rate of 2e-4, a batch size of 4 for both training and
@@ -54,7 +54,7 @@ that time, I will be attempting the training on an A100 machine instead.
 
 #### Fine-Tuning with Lit-GPT from Lightning AI
 
-{% highlight python %}
+```python
 
 # Download the model weights 
 python scripts/download.py \ 
@@ -76,7 +76,7 @@ python finetune/lora.py \
     --data_dir data/dolly \ 
     --checkpoint_dir checkpoints/meta-llama/Llama-2-7b-hf 
 
-{% endhighlight %}
+```
 
 For Step-3 of preparing the datset, we suggest reader to go thru this [blog](https://lightning.ai/blog/how-to-finetune-gpt-like-large-language-models-on-a-custom-dataset/) and this python [script](https://github.com/Lightning-AI/lit-gpt/blob/main/scripts/prepare_alpaca.py#L27) first to understand how to prepare your custom dataset.
 

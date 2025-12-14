@@ -7,7 +7,7 @@ description: "This article describes how to fix the issue of being unable to sta
 Yesterday, I encountered a minor issue while attempting to launch a Jupyter Lab notebook on a new cloud setup. The notebook wouldn't initiate because it was unable to locate a component called 'nbclassic'. Below, you'll find the terminal output and the solution to this problem:
 
 ###### Terminal output
-{% highlight bash %}
+```bash
 (env) root@lx:~/playgrounds# jupyter Lab --no-browser
 [1] 65423
 (env) root@lx:~/playgrounds# [I 2023-87-29 12:86:31.035 ServerApp] Package jupyterlab took 0.00085
@@ -37,10 +37,10 @@ application alrectory ls /root/ playgrounas/ env/ snare upyter/ Lat
 Running as root is not recommendea. Use --allow-root to bypass]
 
 
-{% endhighlight %}
+```
 
 ###### Fix it by installing nbclass
-{% highlight bash %}
+```bash
 (env) root@lx:~/playgrounds# pip freeze | grep nb
 nbclient==0.8.0
 nbconvert=7.7.3
@@ -50,7 +50,7 @@ nbformat==5.9.1
 
 # launch it again
 (env) root@lx:~/playgrounds# jupyter lab --allow-root --port 9000 --no-browser & 
-{% endhighlight %}
+```
 
 Personal note: 
 As a frequent user of JupyterLab and the JupyterLab-vim extension, I've

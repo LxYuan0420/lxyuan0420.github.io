@@ -26,7 +26,7 @@ NLP tasks that ChatGPT is capable of and also to demostrate how to write good
 prompts based on the principles that we described above.
 
 
-{% highlight python %}
+````python
 
 text = f"""
 In a charming village, siblings Jack and Jill set out on \ 
@@ -67,11 +67,11 @@ response = get_completion(prompt_1)
 print("Completion for prompt 1:")
 print(response)
 
-{% endhighlight %}
+````
 
 ChatGPT answered: 
 
-{% highlight python %}
+```python
 
 Completion for prompt 1:
 1 - Siblings Jack and Jill go on a quest to fetch water from a hilltop well,
@@ -94,7 +94,7 @@ meurtris mais avec leurs esprits aventureux intacts.",
 
 5 - They continued exploring with delight.
 
-{% endhighlight %}
+```
 
 It was pretty impressive! Look at the example, we use delimiter to specify text
 to be summarised and question to be answered. We write clear instruction and
@@ -104,7 +104,7 @@ and Question-answering.
 
 Let's look at another example that demo the principle-(2): Think step by step. 
 
-{% highlight python %}
+```python
 prompt = """
 I went to the market and bought 10 apples. 
 I gave 2 apples to the neighbor and 2 to the repairman. 
@@ -115,9 +115,9 @@ Let's think step by step."""
 
 response = get_completion(prompt)
 print(response)
-{% endhighlight %}
+```
 
-{% highlight python %}
+```python
 1. Bought 10 apples.
 2. Gave 2 apples to the neighbor, remaining with 8 apples.
 3. Gave 2 more apples to the repairman, remaining with 6 apples.
@@ -125,7 +125,7 @@ print(response)
 5. Ate 1 apple, remaining with 10 apples.
 
 Therefore, you remained with 10 apples.
-{% endhighlight %}
+```
 
 Again, the answer and step-by-step explanation are correct. :thumbsup:
 
@@ -134,7 +134,7 @@ on unstructure text data. Specifically, extracting key financial indicator
 values such as Earning-per-share (EPS), dividend, net-asset-value (NAV) from
 text. Let's try them:
 
-{% highlight python %}
+```python
 text = """
 Subject to the approval by the shareholders at the forthcoming Annual General Meeting, the directors have proposed an exempt
 (one-tier) final dividend of 3.10 cents per share (2020: exempt (one-tier) final dividend of 3.00 cents per share) amounting to an
@@ -170,7 +170,7 @@ text: {text}
 response = get_completion(prompt)
 print(response)
 
-{% endhighlight %}
+```
 
 ChatGPT answered: 
 

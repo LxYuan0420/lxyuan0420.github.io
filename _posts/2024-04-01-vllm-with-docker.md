@@ -16,15 +16,15 @@ Deploying vLLMs with Docker service requires NVIDIA GPU support, but Docker can 
 
 While deploying [vLLM](https://docs.vllm.ai/en/latest/serving/deploying_with_docker.html) with the following Docker command:
 
-{% highlight bash %}
+```bash
 docker run --runtime nvidia --gpus all ...
-{% endhighlight %}
+```
 
 I was met with:
 
-{% highlight bash %}
+```bash
 docker: Error response from daemon: unknown or invalid runtime name: nvidia.
-{% endhighlight %}
+```
 
 Removing `--runtime nvidia` led to a new error about the inability to find a
 device driver with GPU capabilities.
@@ -36,30 +36,30 @@ device driver with GPU capabilities.
 It's crucial to have `nvidia-docker2` installed for Docker to interface with
 NVIDIA GPUs. Begin by verifying its presence:
 
-{% highlight bash %}
+```bash
 # Check if nvidia-docker2 is installed
 dpkg -l | grep nvidia-docker
 docker info | grep nvidia
-{% endhighlight %}
+```
 
 #### Installing nvidia-docker2
 
 If nvidia-docker2 is missing, install it to bridge Docker with NVIDIA GPUs:
-{% highlight bash %}
+```bash
 # Update package lists and install nvidia-docker2
 sudo apt-get update
 sudo apt-get install -y nvidia-docker2
 
 # Restart Docker to apply changes
 sudo systemctl restart docker
-{% endhighlight %}
+```
 
 #### Confirming the Installation
 
 Ensure the installation was successful by inspecting Docker's runtime
 configuration and checking the installed version:
 
-{% highlight bash %}
+```bash
 # Confirm Docker's runtime configuration for NVIDIA
 cat /etc/docker/daemon.json
 
@@ -77,13 +77,13 @@ dpkg -l | grep nvidia-docker
 
 # Check Docker runtimes for NVIDIA support
 docker info | grep nvidia
-{% endhighlight %}
+```
 
 ### Successful vLLM Deployment
 
 With NVIDIA GPU support enabled, execute the Docker command to deploy the vLLM:
 
-{% highlight bash %}
+```bash
 # Deploy vLLM with NVIDIA GPU support
 docker run --runtime nvidia --gpus all \
     -v /home/likxun/.cache/huggingface:/root/.cache/huggingface \
@@ -95,14 +95,14 @@ docker run --runtime nvidia --gpus all \
     --quantization "gptq" \
     --dtype "half"
 
-{% endhighlight %}
+```
 
 
 #### Testing the Deployment
 
 Verify that the vLLM is operational by executing a test request:
 
-{% highlight bash %}
+```bash
 # Test the vLLM deployment
 curl http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json" \
@@ -110,10 +110,10 @@ curl http://localhost:8000/v1/chat/completions \
         "model": "TheBloke/Mistral-7B-Instruct-v0.1-GPTQ",
         "messages": [{"role": "user", "content": "What is 2+2?"}]
     }'
-{% endhighlight %}
+```
 
 #### Expected Output:
-{% highlight bash %}
+```bash
 {
     "id": "cmpl-afbe2ffa3e0d4779ba28ff8afae5b6a9",
     "object": "chat.completion",
@@ -137,7 +137,7 @@ curl http://localhost:8000/v1/chat/completions \
         "completion_tokens": 9
     }
 }
-{% endhighlight %}
+```
 
 This response indicates that the vLLM deployment is successful and capable of processing requests.
 

@@ -12,7 +12,7 @@ Personally I prefer using double quotes `" "` for all my python strings.
 However, before python 3.12, we are not allowed to use the same quotes inside a
 f-string:
 
-{% highlight python %}
+```python
 
 # before: python 3.10 
 # bad: can't use the same double quote inside the curly bracket
@@ -33,12 +33,12 @@ SyntaxError: f-string: expecting '}'
 >>> f"This is my name list: {" - ".join(names)}"
 'This is my name list: Alex - Bob - Cat'
 
-{% endhighlight %}
+```
 
 This also means that, before this changes, f-strings can be nested only if we
 are using different string quotes, like:
 
-{% highlight python %}
+```python
 # before: python 3.10
 # bad: can't use the same quote
 >>> f"{f"{f"{f"{f"{f"{1+1}"}"}"}"}"}"
@@ -51,23 +51,23 @@ SyntaxError: f-string: expecting '}'
 >>> f"""{f'''{f'{f"{1+1}"}'}'''}"""
 '2'
 
-{% endhighlight %}
+```
 
 Now it is possible to write nested f-strings with the same quotes:
-{% highlight python %}
+```python
 
 # after: python 3.12
 # ok: to use same quotes 
 >>> f"{f"{f"{f"{f"{f"{1+1}"}"}"}"}"}"
 '2'
 
-{% endhighlight %}
+```
 
 Another thing that I like about python 3.12 f-string is that we can use
 `backlashes` and `unicode escaped sequences`. The following example is taken
 from the official PEP changelog:
 
-{% highlight python %}
+```python
 >>> print(f"This is the playlist: {"\n".join(songs)}")
 This is the playlist: Take me back to Eden
 Alkaline
@@ -76,7 +76,7 @@ Ascensionism
 >>> print(f"This is the playlist: {"\N{BLACK HEART SUIT}".join(songs)}")
 This is the playlist: Take me back to Eden♥Alkaline♥Ascensionism
 
-{% endhighlight %}
+```
 
 Related:
 - [What's New In Python 3.12](https://docs.python.org/3.12/whatsnew/3.12.html)

@@ -22,7 +22,7 @@ Here’s how to configure custom certificates so that `requests`, `curl`, and ot
 
 First, obtain the custom root certificate from your IT department. It’s often a `.pem` file, typically named something like CompanyRootCertificate.pem. This certificate is needed to add to your system’s CA bundle.
 
-{% highlight bash %}
+```bash
 # 1. Download Zscaler Root Certificate
 # Make sure you have `ZscalerRootCertificate-2048-SHA256.pem` downloaded
 
@@ -49,6 +49,6 @@ curl https://httpbin.org/get
 
 # Hugging Face CLI
 huggingface-cli download google-bert/bert-base-uncased
-{% endhighlight %}
+```
 
 Hopefully, this helps anyone else who runs into similar issues!

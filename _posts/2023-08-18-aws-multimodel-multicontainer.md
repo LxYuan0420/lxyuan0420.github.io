@@ -23,7 +23,7 @@ see that the S3 prefix we specified when setting up MultiDataModel now has
 multiple model artifacts. As such, the endpoint can now serve up inference
 requests for these models. For instance:
 
-{% highlight python %}
+```python
 list(mme.list_models())
 >>> ['Chicago_IL.tar.gz',
 'Houston_TX.tar.gz',
@@ -36,7 +36,7 @@ predicted_value = predictor.predict(data=gen_random_house()[1:], target_model="C
 
 predicted_value = predictor.predict(data=gen_random_house()[1:], target_model="Houston_TX.tar.gz")
 
-{% endhighlight %}
+```
 
 However, it is worth mentioning that it is possible to deploy models from
 different framework backends to SageMaker MME if they can use the same
@@ -52,7 +52,7 @@ classification and a model for natural language processing. Another common use
 case of this is to deploy multiple HF models into different containers, and
 each of them uses different environment variables. For instance:
 
-{% highlight python %}
+```python
 textClassificationModel = {
     'Image': hf_inference_dlc,
     'ContainerHostname': 'textClassificationModel',
@@ -70,7 +70,7 @@ zeroShotModel = {
 	    'HF_TASK':'zero-shot-classification'
     }
 }
-{% endhighlight %}
+```
 
 
 Additional note on zipping model:
@@ -81,13 +81,13 @@ library. However, I would suggest handling the model cloning and zipping using
 terminal commands to ensure the tar file is created correctly. Doing it with
 Python code was nasty and wasted a few hours of my time.
 
-{% highlight bash %}
+```bash
 $ git lfs install
 $ git clone git@hf.co:lxyuan/distilgpt2-finetuned-finance #replace it with other models from hf hub
 $ cd distilgpt2-finetuned-finance # make sure you cd into the dir
 $ tar zcvf model.tar.gz *
 $ aws s3 cp model.tar.gz <s3://{my-s3-path}>
-{% endhighlight %}
+```
 
 
 Please read the docs mentioned below for better understanding:

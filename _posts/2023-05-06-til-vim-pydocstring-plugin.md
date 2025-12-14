@@ -14,9 +14,9 @@ To begin using vim-pydocstring, you need to install it as a Vim plugin. It is
 recommended that you use a plugin manager like vimplug and add this line to
 your `.vimrc` file:
 
-{% highlight bash %}
+```bash
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' } 
-{% endhighlight %}
+```
 
 
 One of the standout features of vim-pydocstring is its ability to insert both
@@ -27,10 +27,10 @@ significantly. Another way that I prefer to run this plugin is `Ctrl _` (ctrl
 button and underscore). I achieved that by adding the following command to my
 `.vimrc` file:
 
-{% highlight bash %}
+```bash
 nmap <silent> <C-_> <Plug>(pydocstring)
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 smarttab expandtab
-{% endhighlight %}
+```
 
 In addition to the core functionality of the plugin, vim-pydocstring allows
 customization of various settings to fit your preferences. For instance, you
@@ -38,9 +38,9 @@ can adjust the tab and shift widths and choose between different built-in
 docstring formats like Sphinx, Numpy, and Google. Personally, I prefer the
 numpy style and so I also added the following command to my `.vimrc` file:
 
-{% highlight bash %}
+```bash
 let g:pydocstring_formatter = 'numpy'
-{% endhighlight %}
+```
 
 
 Once it all set, you can start using vim-pydocstring to generate Python
@@ -49,7 +49,7 @@ see if it can make your workflow more efficient!
 
 Below is the `before` and `after` demo:
 
-{% highlight python %}
+```python
 # before
 class Person():
     def __init__(self, name: str):
@@ -61,10 +61,10 @@ class Person():
 def group_intro(p1: Person, p2: Person) -> str:
     output = p1.hello() + p2.hello()
     return output
-{% endhighlight %}
+```
 
 
-{% highlight python %}
+```python
 # after
 class Person():
     """Person.
@@ -110,4 +110,4 @@ def group_intro(p1: Person, p2: Person) -> str:
     """
     output = p1.hello() + p2.hello()
     return output
-{% endhighlight %}
+```

@@ -11,49 +11,49 @@ it again later. This blog will serve as a reference for future setups.
 
     The first step is definitely to install [homebrew](https://brew.sh/).
 
-{% highlight bash %}
+```bash
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-{% endhighlight %}
+```
 
 - iterm2
 
-{% highlight bash %}
+```bash
 $ brew install --cask iterm2
-{% endhighlight %}
+```
 
 - zsh
 
-{% highlight bash %}
+```bash
 $ brew install zsh
-{% endhighlight %}
+```
 
 - oh-my-zsh
 
-{% highlight bash %}
+```bash
 $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-{% endhighlight %}
+```
 
 - tmux
 
-{% highlight bash %}
+```bash
 $ brew install tmux 
-{% endhighlight %}
+```
 
 - Vimplug
 
     🌺 Minimalist Vim Plugin Manager: [Vimplug](https://github.com/junegunn/vim-plug). Please check out the repo
     to see how to add and install vim plugins.
 
-{% highlight bash %}
+```bash
 $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-{% endhighlight %}
+```
 
 - Overwrite default vim and tmux config file with my configuration:
     
     One can check out my dotfile repo at [here](https://github.com/LxYuan0420/dotfiles).
 
-{% highlight bash %}
+```bash
 $ wget https://raw.githubusercontent.com/LxYuan0420/dotfiles/main/.vimrc
 $ wget https://raw.githubusercontent.com/LxYuan0420/dotfiles/main/.tmux.conf
 
@@ -62,7 +62,7 @@ $ mv .tmux.conf ~/.tmux.conf
 
 $ vim ~/.vimrc
 # use command `:PlugInstall` to install vim plugins
-{% endhighlight %}
+```
 
 Personally, I like to move around between tmux panes with alt-hjkl (or
 cmd+hjkl), similar to the vim binding. However, if you are using mac os, you
@@ -73,7 +73,7 @@ need do some extra steps to make that happen.
 3. Select `Send Hex Code` at action
 4. Enter the following hotkeys and hex sequence one by one:
 
-{% highlight html %}
+```html
 # for Mac iterm2 Cmd-hjkl move tmux pane
 # iterm2 > Preference > keys > +
 #Mac hotkey      Hex sequence            Purpose
@@ -81,7 +81,7 @@ need do some extra steps to make that happen.
 #Cmd-j           0x02 0x1B 0x5B 0x42     Move to pane below
 #Cmd-k           0x02 0x1B 0x5B 0x41     Move to pane above
 #Cmd-l           0x02 0x1B 0x5B 0x43     Move to pane at right
-{% endhighlight %}
+```
 
 Image for reference:
 {% include image.html path="documentation/send-hex-code.png" path-detail="documentation/send-hex-code.png" alt="Sample image for send hex code on mac" %}

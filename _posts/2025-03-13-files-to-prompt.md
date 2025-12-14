@@ -17,7 +17,7 @@ formatting them in Markdown for further analysis.
 
 ### Python-Specific Command Examples
 
-{% highlight bash %}
+```bash
 # 1. Concatenate all Python files in a directory and output in Markdown format
 # This will only include `.py` files and format them as Markdown.
 files-to-prompt path/to/directory -e py -m
@@ -30,7 +30,7 @@ files-to-prompt path/to/directory -e py -m -o python_files.md
 # This will copy the concatenated Python files into the clipboard for easy pasting.
 # for example, paste the content to chatgpt
 files-to-prompt path/to/directory -e py | pbcopy
-{% endhighlight %}
+```
 
 
 Hope this helps make your experience with LLM and terminal in a large project more efficient and productive.

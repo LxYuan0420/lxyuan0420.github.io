@@ -21,7 +21,7 @@ The high-level idea is to:
 
 The code is pretty simple:
 
-{% highlight python %}
+```python
 import os
 from langchain.document_loaders import PyPDFDirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -65,10 +65,10 @@ while True:
         except Exception as err:
             print('Exception occurred. Please try again', str(err))
 
-{% endhighlight %}
+```
 
 Below is the terminal output:
-{% highlight python %}
+```python
 >>>
 Enter a query: Refer to Dragon Group International financial report, what is the reported "Cash and cash equivalent" amount as of 30 September 2022?
 I'm sorry, I cannot find the reported "Cash and cash equivalent" amount as of 30 September 2022 in the given context. The condensed consolidated balance sheet available on page 20 provides some financial information, but it does not include this specific figure.
@@ -93,7 +93,7 @@ The reported net asset value per share as of 31 Mar 2022 for HS Optimus Holding 
 Enter a query: What was the net book value of the assets disposed of by the Group during the six months ended September 30, 2022?
 The net book value of the assets disposed of by the Group during the six months ended September 30, 2022 was $190.
 
-{% endhighlight %}
+```
 
 Below are screenshot images that include the asnwer from the target page:
 

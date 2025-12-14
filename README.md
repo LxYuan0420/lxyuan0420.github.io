@@ -5,7 +5,7 @@ Personal notes / knowledge dump published via GitHub Pages.
 ### Theme
 
 - `remote_theme: b2a3e8/jekyll-theme-console`
-- `style: light`
+- `style: dark`
 
 ### Publishing
 

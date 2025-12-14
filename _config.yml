@@ -4,7 +4,7 @@ url: "https://lxyuan0420.github.io"
 baseurl: ""
 
 remote_theme: b2a3e8/jekyll-theme-console
-style: light
+style: dark
 
 header_pages:
   - index.md
@@ -12,6 +12,7 @@ header_pages:
 
 footer: >-
   find me on <a href="https://github.com/LxYuan0420">github</a> ·
+  <a href="https://huggingface.co/lxyuan">huggingface</a> ·
   <a href="https://www.linkedin.com/in/likxunyuan">linkedin</a> ·
   <a href="https://twitter.com/lxyuan">twitter</a>
 

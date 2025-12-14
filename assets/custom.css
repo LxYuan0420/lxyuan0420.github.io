@@ -1,0 +1,22 @@
+.post-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.post-list-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.post-date {
+  flex: none;
+  white-space: nowrap;
+}
+
+.post-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

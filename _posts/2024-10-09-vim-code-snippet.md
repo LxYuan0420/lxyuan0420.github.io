@@ -34,10 +34,11 @@ I configured UltiSnips to use convenient keybindings for expanding and navigatin
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+{% endhighlight %}
+
 - `<tab>`: Expands the snippet.
 - `<c-b>`: Jumps forward to the next placeholder in the snippet.
 - `<c-z>`: Jumps backward to the previous placeholder.
-{% endhighlight %}
 
 ### Step 3: Creating a Custom C++ Snippet
 
@@ -62,7 +63,7 @@ endsnippet
 
 When I type `main` and press `<tab>` in a C++ file, it expands to:
 
-{% highlight c++ %}
+{% highlight cpp %}
 #include <iostream>
 
 int main()
@@ -81,7 +82,9 @@ Note: You can find these snippets in ~/.vim/plugged/vim-snippets/snippets/. You 
 ### 6. Reload Vim and Test Your Snippet
 Reload your Vim configuration or restart Vim to ensure everything is set up:
 
-{% highlight bash %} source ~/.vimrc {% endhighlight %}
+{% highlight bash %}
+source ~/.vimrc
+{% endhighlight %}
 
 Now, open a new .cpp file, type main, and hit <tab> to expand your snippet!
 
@@ -93,4 +96,3 @@ Setting up UltiSnips and vim-snippets was straightforward and significantly boos
 **References:**
 - [UltiSnips on GitHub](https://github.com/SirVer/ultisnips)
 - [vim-snippets on GitHub](https://github.com/honza/vim-snippets)
-

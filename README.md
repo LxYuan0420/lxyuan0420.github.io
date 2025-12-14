@@ -9,7 +9,7 @@ Personal notes / knowledge dump published via GitHub Pages.
 
 ### Publishing
 
-After GitHub Pages is configured to build from this branch, publishing is just:
+Publish by pushing to the branch GitHub Pages builds from (Settings → Pages).
 
 1. Write Markdown.
 2. `git commit`

@@ -18,6 +18,9 @@ footer: >-
 
 permalink: posts/:slug
 
+tracking: true
+goatcounter_url: "https://lxyuan0420.goatcounter.com/count"
+
 markdown: kramdown
 plugins:
   - jekyll-seo-tag

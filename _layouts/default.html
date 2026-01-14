@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+{%- comment -%}
+  Build a practical CSP. It remains strict by default while allowing common use
+  cases like external images and Google Fonts.
+
+  This repo uses GoatCounter, which loads `https://gc.zgo.at/count.js` and sends
+  hits to `site.goatcounter_url`. Those domains must be allowed by CSP, otherwise
+  tracking will silently fail and surface as a CSP error in the browser console.
+
+  Additional directives may be appended via `csp_extra` in your _config.yml.
+{%- endcomment -%}
+{%- capture goatcounter_origin -%}{{ site.goatcounter_url | split: "/count" | first }}{%- endcapture -%}
+{%- capture csp -%}
+default-src 'none';
+connect-src 'self'{% if site.tracking and site.goatcounter_url %} {{ goatcounter_origin }}{% endif %};
+base-uri 'self';
+form-action 'none';
+img-src 'self' https: data:;
+style-src 'self' https://fonts.googleapis.com;
+font-src 'self' https://fonts.gstatic.com data:;
+media-src 'self';
+object-src 'none';
+child-src 'self';
+script-src 'self';
+{% if site.tracking and site.goatcounter_url %}
+script-src-elem 'self' https://gc.zgo.at;
+{% endif %}
+{%- endcapture -%}
+{%- capture csp_final -%}{{ csp | strip | replace: '\n', ' ' }} {%- if site.csp_extra %} {{ site.csp_extra }}{%- endif -%}{%- endcapture -%}
+<meta http-equiv="Content-Security-Policy" content="{{ csp_final | strip }}" />
+<meta http-equiv="X-XSS-Protection"  content="1;mode=block" always>
+<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin">
+
+  {%- include head.html -%}
+
+  <body>
+    <div class="container">
+
+      {%- include header.html -%}
+
+    <main>
+      {{ content }}
+    </main>
+
+    {%- include footer.html -%}
+
+    </div>
+  </body>
+</html>

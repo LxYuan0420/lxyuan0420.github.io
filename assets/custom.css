@@ -20,3 +20,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* Improve readability of fenced code blocks (Rouge / kramdown). */
+div.highlighter-rouge {
+  margin: 15px 0;
+}
+
+div.highlighter-rouge pre.highlight {
+  padding: 10px 12px;
+  background-color: rgba(128, 128, 128, 0.08);
+  border: 1px dashed rgba(128, 128, 128, 0.35);
+}

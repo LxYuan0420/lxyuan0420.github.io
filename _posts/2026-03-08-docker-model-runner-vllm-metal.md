@@ -174,6 +174,13 @@ Also note: `docker model configure` only updates per-model runtime config. It do
 docker model run -d hf.co/mlx-community/Mistral-7B-Instruct-v0.3-4bit
 ```
 
+### Q10: What’s the difference between Docker Model Runner and Ollama?
+
+They overlap (both can run LLMs locally), but they optimize for different workflows:
+
+- **Docker Model Runner**: integrated into Docker Desktop, routes requests to different engines depending on model/hardware (`llama.cpp`, `vllm`, and on Apple Silicon the vLLM path uses `vllm-metal` for MLX models). When your model is on the `vllm` backend, you also get vLLM’s serving optimizations like a request scheduler with continuous batching, efficient KV cache management (PagedAttention), and prefix caching support. It’s a good fit when you want an OpenAI-compatible `/v1` endpoint that works cleanly with containers and local dev tools.
+- **Ollama**: a standalone local model runtime/daemon with its own model packaging workflow (Modelfiles). It’s a good fit when you want the simplest “pull + run” local experience and you’re building around the Ollama ecosystem and APIs.
+
 ## Sources
 
 - <https://www.docker.com/blog/docker-model-runner-vllm-metal-macos/>
